@@ -11,5 +11,7 @@ class User < ActiveRecord::Base
   has_many :projects, through: :user_projects
 
   has_many :collaborators, class_name: "User", through: :projects
-  
+
+  has_many :notifications
+
 end
