@@ -9,7 +9,11 @@ class User < ActiveRecord::Base
 
   has_many :user_projects
   has_many :projects, through: :user_projects
+ 
+  has_many :notifications
+  # def collaborators
+  #   #Find all users who are associated with projects that have the current user's id
+  #   projects.joins(:users).where(id: id)
+  # end
 
-  has_many :collaborators, class_name: "User", through: :projects
-  
 end
