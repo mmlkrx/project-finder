@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   root 'projects#index'
 
+  resources :projects, only: [:show, :edit]
+
 end

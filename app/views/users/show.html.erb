@@ -5,7 +5,7 @@
 <div class="in_progress_user_projects">
   <% @user.projects.in_progress.each do |project| %>
     <div>
-      <h4><%= project.title %></h4>
+      <h4><%= link_to project.title, project %></h4>
       <p><%= project.description %></p>
     </div>
   <% end %>
@@ -14,7 +14,7 @@
 <div class="planned_user_projects">
   <% @user.projects.in_planning.each do |project| %>
     <div>
-      <h4><%= project.title %></h4>
+      <h4><%= link_to project.title, project %></h4>
       <p><%= project.description %></p>
     </div>
   <% end %>
@@ -23,7 +23,7 @@
 <div class="completed_user_projects">
   <% @user.projects.completed.each do |project| %>
     <div>
-      <h4><%= project.title %></h4>
+      <h4><%= link_to project.title, project %></h4>
         <p><%= project.description %></p>
     </div>
   <% end %>
