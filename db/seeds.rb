@@ -15,6 +15,7 @@ hercules = User.create(name: "Hercules", email: "h@foo.com", password: "password
 project_mayhem = Project.new(title: "Project Mayhem", description: "Havin some fun", status: "planning", admin_id: "#{tyler.id}")
 project_node = Project.new(title: "Project Node", description: "Learning node", status: "planning", admin_id: "#{brandon.id}")
 project_fun = Project.new(title: "Project Fun", description: "Having a lot more fun", status: "completed", admin_id: "#{michael.id}")
+project_progress = Project.create(title: "Project Making Tons of Progress", description: "Having a lot more fun", status: "in_progress", admin_id: "#{michael.id}")
 
 brandon.projects << project_mayhem
 randall.projects << project_node
@@ -55,10 +56,7 @@ michael.save
 
 UserProject.create(user_id: "#{brandon.id}", project_id: "#{project_fun.id}", approved: true)
 UserProject.create(user_id: "#{randall.id}", project_id: "#{project_fun.id}", approved: false)
-
-# users who have no projects 
-# users who have been approved 
-# users who are admins
-
+UserProject.create(user_id: "#{hercules.id}", project_id: "#{project_progress.id}", approved: false)
+UserProject.create(user_id: "#{brandon.id}", project_id: "#{project_progress.id}", approved: true)
 
 

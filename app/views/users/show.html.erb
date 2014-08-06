@@ -5,7 +5,7 @@
 <% unless @user.projects.where(admin_id: @user.id).completed.empty?  %>
   <div class="administrated_projects">
     <h3>Projects I'm administrating</h3>
-    <% @user.projects.where(admin_id: @user.id).each do |project| %>
+    <% @user.projects.where(admin_id: @user.id).where.not(status: "completed").each do |project| %>
       <div>
         <h4><%= link_to project.title, project %></h4>
         <p><%= project.description %></p>

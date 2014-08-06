@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   end
 
   def projects_as_collaborator
-    projs = projects.reject{|proj| proj.admin_id == self.id}
+    projs = projects.reject{|proj| proj.admin_id == self.id || proj.status == "completed"}
     projs.select do |project|
       project.user_projects.detect{|user_project| user_project.user_id == self.id}.approved
     end
