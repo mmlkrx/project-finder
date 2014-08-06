@@ -4,10 +4,11 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!, except: :index
 
   def index
-    unless user_signed_in?
+    if user_signed_in?
+      @projects = Project.matching_user_skills(current_user)
+    else
       redirect_to about_path
     end
-    @projects = Project.matching_user_skills(current_user)
   end
 
   def create
