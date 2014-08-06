@@ -20,6 +20,11 @@ class ProjectsController < ApplicationController
   def show
   end
 
+  def new
+    @categories = Category.all
+    @project = Project.new
+  end
+
   def edit
 
   end

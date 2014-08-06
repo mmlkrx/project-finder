@@ -14,7 +14,7 @@ project_mayhem = Project.new(title: "Project Mayhem", description: "Havin some f
 project_node = Project.new(title: "Project Node", description: "Learning node", status: "planning")
 brandon.projects << project_mayhem
 randall.projects << project_node
-tyler.projects << project_mayhem
+tyler.projects << [project_mayhem, project_node]
 brandon.save
 randall.save
 tyler.save
