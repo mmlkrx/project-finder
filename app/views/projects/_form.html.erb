@@ -22,6 +22,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :Skills %><br>
+    <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :name %>
+  </div>
+
+  <div class="field">
     <%= f.hidden_field :admin_id, :value => current_user.id %>
   </div>
 

@@ -27,6 +27,7 @@ node = Skill.create(name: "node")
 marketing = Skill.create(name: "marketing")
 copywriting = Skill.create(name: "copywriting")
 
+
 internet.skills << [ruby, node]
 business.skills << [marketing, copywriting]
 
