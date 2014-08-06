@@ -17,7 +17,7 @@ project_node = Project.new(title: "Project Node", description: "Learning node", 
 project_fun = Project.new(title: "Project Fun", description: "Having a lot more fun", status: "completed", admin_id: "#{michael.id}")
 project_progress = Project.create(title: "Project Making Tons of Progress", description: "Having a lot more fun", status: "in_progress", admin_id: "#{michael.id}")
 
-brandon.projects << project_mayhem
+brandon.projects << [project_mayhem, project_node]
 randall.projects << project_node
 tyler.projects << [project_mayhem, project_node]
 michael.projects << [project_fun, project_node, project_mayhem]
@@ -54,9 +54,9 @@ tyler.save
 randall.save
 michael.save
 
-UserProject.create(user_id: "#{brandon.id}", project_id: "#{project_fun.id}", approved: true)
-UserProject.create(user_id: "#{randall.id}", project_id: "#{project_fun.id}", approved: false)
-UserProject.create(user_id: "#{hercules.id}", project_id: "#{project_progress.id}", approved: false)
-UserProject.create(user_id: "#{brandon.id}", project_id: "#{project_progress.id}", approved: true)
+UserProject.create(user_id: brandon.id, project_id: project_fun.id, approved: true)
+UserProject.create(user_id: randall.id, project_id: project_fun.id, approved: false)
+UserProject.create(user_id: hercules.id, project_id: project_progress.id, approved: false)
+UserProject.create(user_id: brandon.id, project_id: project_progress.id, approved: true)
 
 
