@@ -10,7 +10,7 @@
   <% if @project.current_collaborators %>
     <% @project.current_collaborators.each do |user| %>
       <div class="team_member_profile">
-        <strong><% user.name %></strong>
+        <strong><%= user.name %></strong>
       </div>
     <% end %>
   <% end %>
@@ -30,7 +30,7 @@
             <% end %>
           </div>
           <% if @project.admin_id == current_user.id %>
-            <%= button_to "Approve collaboration", {controller: "user_projects", action: "approve_collaboration", user_id: current_user.id, project_id: @project.id}, method: :post %>
+            <%= button_to "Approve collaboration", {controller: "user_projects", action: "approve_collaboration", user_id: user.id, project_id: @project.id}, method: :post %>
           <% end %>
         </div>
         </div>
