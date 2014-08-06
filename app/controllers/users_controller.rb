@@ -2,6 +2,14 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show]
 
   def show
+    if @user.notifications.length > 0
+      flash.now[:message] = []
+      @user.notifications.each do |notification|
+        flash.now[:message] << notification.content
+      end
+    end
+    @user.notifications.delete_all
+    @user.save
   end
 
   private

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :projects, only: [:show, :edit, :create, :new]
   post 'approve_collaboration' => 'user_projects#approve_collaboration', as: "approve_collaboration"  
+  post 'deny_collaboration' => 'user_projects#deny_collaboration', as: "deny_collaboration"  
   get '/about' => 'application#about', as: "about"
 
 end

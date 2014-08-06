@@ -15,7 +15,6 @@ class Project < ActiveRecord::Base
       proj.approved
     end
     return prspc
-
   end
 
   def current_collaborators

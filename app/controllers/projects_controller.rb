@@ -12,8 +12,10 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.user_projects.build(user_id: params[:project][:admin_id])
     if @project.save
+      user_project = @project.user_projects.build(user_id: params[:project][:admin_id])
+      user_project.save
+      user_project.approved = true
       redirect_to current_user
     else
       flash.now[:alert] = "Project was not saved properly."
