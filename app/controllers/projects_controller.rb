@@ -8,9 +8,10 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.admin_id = params[:project][:user_id]
+    @project.admin_id = params[:project][:admin_id]
+    @project.users << current_user
     if @project.save
-      redirect_to @project
+      redirect_to current_user
     else
       flash.now[:alert] = "Project was not saved properly."
       render 'projects/index'
@@ -20,6 +21,10 @@ class ProjectsController < ApplicationController
   def show
   end
 
+  def new
+    @project = Project.new
+  end
+
   def edit
 
   end
@@ -27,7 +32,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :description)
+    params.require(:project).permit(:title, :description, :skill_ids => [])
   end
 
   def set_project

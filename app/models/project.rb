@@ -3,6 +3,9 @@ class Project < ActiveRecord::Base
   has_many :user_projects
   has_many :users, through: :user_projects
 
+  has_many :project_skills
+  has_many :skills, through: :project_skills
+
   def admin
     User.find(admin_id)
   end
@@ -15,6 +18,7 @@ class Project < ActiveRecord::Base
       proj.approved
     end
     return prspc
+
   end
 
   def current_collaborators
