@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140805153220) do
+ActiveRecord::Schema.define(version: 20140806002536) do
 
   create_table "notifications", force: true do |t|
     t.integer  "user_id"
@@ -23,9 +23,10 @@ ActiveRecord::Schema.define(version: 20140805153220) do
   create_table "projects", force: true do |t|
     t.string   "title"
     t.string   "description"
-    t.string   "status"
+    t.string   "status",      default: "planning"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "admin_id"
   end
 
   create_table "skills", force: true do |t|
