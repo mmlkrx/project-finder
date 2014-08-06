@@ -2,7 +2,15 @@ class Project < ActiveRecord::Base
 
   has_many :user_projects
   has_many :users, through: :user_projects
-  
+
+  def prospective_collaborators
+    
+  end
+
+  def current_collaborators
+
+  end
+
   def self.in_planning
     where(status: 'planning')
   end

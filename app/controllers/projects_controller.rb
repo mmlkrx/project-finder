@@ -6,8 +6,18 @@ class ProjectsController < ApplicationController
     @projects = Project.in_planning.order("created_at DESC")
   end
 
-  def show
+  def create
+    @project = Project.new(project_params)
+    @project.admin_id = params[:project][:user_id]
+    if @project.save
+      redirect_to @project
+    else
+      flash.now[:alert] = "Project was not saved properly."
+      render 'projects/index'
+    end
+  end
 
+  def show
   end
 
   def edit
@@ -15,6 +25,10 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def project_params
+    params.require(:project).permit(:title, :description)
+  end
 
   def set_project
     @project = Project.find(params[:id])

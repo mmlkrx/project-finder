@@ -29,9 +29,10 @@ ActiveRecord::Schema.define(version: 20140805221217) do
   create_table "projects", force: true do |t|
     t.string   "title"
     t.string   "description"
-    t.string   "status"
+    t.string   "status",      default: "planning"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "admin_id"
   end
 
   create_table "skills", force: true do |t|
