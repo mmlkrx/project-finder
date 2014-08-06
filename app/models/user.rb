@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :notifications
 
   def as_admin
-    projects.where(admin_id: self.id)
+    self.projects.where(admin_id: self.id)
   end
 
   def projects_as_collaborator

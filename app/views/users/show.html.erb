@@ -2,7 +2,7 @@
 
 <h1><%= link_to 'Create a new Project', new_project_path %></h1>
 
-<% unless @user.projects.where(admin_id: @user.id).completed.empty?  %>
+<% unless @user.projects.where(admin_id: @user.id).empty?  %>
   <div class="administrated_projects">
     <h3>Projects I'm administrating</h3>
     <% @user.projects.where(admin_id: @user.id).where.not(status: "completed").each do |project| %>

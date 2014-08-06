@@ -12,8 +12,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.admin_id = params[:project][:admin_id]
-    @project.users << current_user
+    @project.user_projects.build(user_id: params[:project][:admin_id])
     if @project.save
       redirect_to current_user
     else
@@ -36,7 +35,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :description, :skill_ids => [])
+    params.require(:project).permit(:title, :description, :admin_id, :skill_ids => [])
   end
 
   def set_project

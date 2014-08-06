@@ -5,10 +5,7 @@ class Project < ActiveRecord::Base
 
   has_many :project_skills
   has_many :skills, through: :project_skills
-
-  def admin
-    User.find(admin_id)
-  end
+  belongs_to :admin, class_name: 'User', foreign_key: :admin_id
 
   def prospective_collaborators
     #users.joins("user_projects").where("users.id != ?", self.admin_id).where("user_projects.approved = 'false'")
