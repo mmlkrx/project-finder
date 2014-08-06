@@ -1,8 +1,12 @@
 class ProjectsController < ApplicationController
 
   before_action :set_project, only: [:show, :edit]
+  before_action :authenticate_user!, except: :index
 
   def index
+    unless user_signed_in?
+      redirect_to about_path
+    end
     @projects = Project.in_planning.order("created_at DESC")
   end
 
