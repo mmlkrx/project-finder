@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
     unless user_signed_in?
       redirect_to about_path
     end
-    @projects = Project.in_planning.order("created_at DESC")
+    @projects = Project.matching_user_skills(current_user)
   end
 
   def create

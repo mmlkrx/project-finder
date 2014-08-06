@@ -14,6 +14,7 @@ hercules = User.create(name: "Hercules", email: "h@foo.com", password: "password
 
 project_mayhem = Project.create(title: "Project Mayhem", description: "Havin some fun", status: "planning", admin_id: "#{tyler.id}")
 project_node = Project.create(title: "Project Node", description: "Learning node", status: "planning", admin_id: "#{brandon.id}")
+project_god = Project.create(title: "Project God", description: "Learning to be god", status: "planning", admin_id: "#{michael.id}")
 project_fun = Project.create(title: "Project Fun", description: "Having a lot more fun", status: "completed", admin_id: "#{michael.id}")
 project_progress = Project.create(title: "Project Making Tons of Progress", description: "Having a lot more fun", status: "in_progress", admin_id: "#{michael.id}")
 
@@ -32,6 +33,9 @@ copywriting = Skill.create(name: "copywriting")
 python = Skill.create(name: "python")
 database_administration = Skill.create(name: "database administration")
 
+project_mayhem.skills << [marketing, copywriting]
+project_node.skills << [node, python, ruby]
+project_god.skills << database_administration
 
 internet.skills << [ruby, node]
 business.skills << [marketing, copywriting]

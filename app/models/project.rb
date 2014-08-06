@@ -39,4 +39,30 @@ class Project < ActiveRecord::Base
     where(status: 'completed')
   end
 
+  # Project.in_planning.joins(:skills).uniq.where("skill_id = ? OR skill_id = ?", *[1,5])
+  def self.matching_user_skills(user)
+    self.in_planning.joins(:skills).uniq.where(sql_for_skill_ids(user), *user_skill_ids(user)).order("created_at DESC")  
+  end
+
+
+  def self.sql_for_skill_ids(user)
+    user_skill_ids(user).map{"skill_id = ?"}.join(" OR ")
+  end
+
+  def self.user_skill_ids(user)
+    user.skills.map{ |skill| skill.id }
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+

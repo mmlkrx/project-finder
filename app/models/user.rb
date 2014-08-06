@@ -36,5 +36,4 @@ class User < ActiveRecord::Base
   #   projects.joins(:users).where(id: id)
   # end
 
-
 end
