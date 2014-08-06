@@ -1,0 +1,41 @@
+
+<h3><%= @project.title %></h3>
+<div class="project_description"><p><%= @project.description %></p></div>
+
+<div class="project_team">
+  <h4>Team</h4>
+  <div class="admin_profile">
+    <strong><%= @project.admin.name %></strong>
+  </div>
+  <% if @project.current_collaborators %>
+    <% @project.current_collaborators.each do |user| %>
+      <div class="team_member_profile">
+        <strong><% user.name %></strong>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="prospective_collaborators">
+  <% if @project.admin_id == current_user.id || @project.current_collaborators.include?(current_user) %>
+    <% unless @project.prospective_collaborators.empty? %>
+      <h4>These people want to join your team</h4>
+      <% @project.prospective_collaborators.each do |user| %>
+        <div class="prospective_collaborator">
+          <h3>Prospective Collaborators</h3>
+          <%= user.name %>
+          <div class="prospective_collaborator">
+          <div class="skill_set">
+            <% user.skills.each do |skill| %>
+              <div class="skill"><%= skill.name %></div>
+            <% end %>
+          </div>
+          <% if @project.admin_id == current_user.id %>
+            <%= button_to "Approve collaboration", {controller: "user_projects", action: "approve_collaboration", user_id: current_user.id, project_id: @project.id}, method: :post %>
+          <% end %>
+        </div>
+        </div>
+      <% end  %>
+    <% end %>
+  <% end %>
+</div>
