@@ -6,7 +6,7 @@ class UserProjectsController < ApplicationController
     @user_project.save
     @user = User.find(params[:user_id])
     @project = Project.find(params[:project_id])
-    @user.notifications.build(content: "You're approved to work on #{@project.title}")
+    @user.notifications.build(content: "You're approved to work on #{@project.title}").save
     redirect_to @project
   end
 
