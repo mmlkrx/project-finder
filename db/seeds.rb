@@ -14,8 +14,10 @@ project_mayhem = Project.new(title: "Project Mayhem", description: "Havin some f
 project_node = Project.new(title: "Project Node", description: "Learning node", status: "planning")
 brandon.projects << project_mayhem
 randall.projects << project_node
+tyler.projects << project_mayhem
 brandon.save
 randall.save
+tyler.save
 
 internet = Category.create(name: "Internet")
 business = Category.create(name: "Business")

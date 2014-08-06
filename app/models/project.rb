@@ -4,7 +4,7 @@ class Project < ActiveRecord::Base
   has_many :users, through: :user_projects
 
   def prospective_collaborators
-    
+    users.joins(:user_projects).where(approved: false)
   end
 
   def current_collaborators
