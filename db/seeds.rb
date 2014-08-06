@@ -17,13 +17,23 @@ randall.projects << project_node
 brandon.save
 randall.save
 
-explosives = Skill.create(name: "explosives")
-manipulation = Skill.create(name: "manipulation")
-sales = Skill.create(name: "sales")
+internet = Category.create(name: "Internet")
+business = Category.create(name: "Business")
 
-brandon.skills << [explosives, sales]
-tyler.skills << [manipulation, sales]
-randall.skills << manipulation
+ruby = Skill.create(name: "ruby")
+node = Skill.create(name: "node")
+marketing = Skill.create(name: "marketing")
+copywriting = Skill.create(name: "copywriting")
+
+internet.skills << [ruby, node]
+business.skills << [marketing, copywriting]
+
+internet.save
+business.save
+
+brandon.skills << [ruby, marketing]
+tyler.skills << [node, marketing, copywriting]
+randall.skills << node
 brandon.save
 tyler.save
 randall.save
