@@ -1,3 +1,5 @@
+
+
 This generator has set up the following stack:
   1. Testing
     * RSpec

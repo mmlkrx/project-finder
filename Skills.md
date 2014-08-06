@@ -1,3 +1,10 @@
+Possible color hexes
+7F7769
+FFD085
+FFEDD2
+7F776B
+CCBEA8
+
 Internet
 -Ruby
 -Python
