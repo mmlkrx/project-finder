@@ -12,12 +12,23 @@ class User < ActiveRecord::Base
  
   has_many :notifications
 
-  def projects_as_admin
+  def as_admin
     projects.where(admin_id: self.id)
   end
 
   def projects_as_collaborator
-    projects.where.not(admin_id: self.id)
+    projs = projects.reject{|proj| proj.admin_id == self.id}
+    projs.select do |project|
+      project.user_projects.detect{|user_project| user_project.user_id == self.id}.approved
+    end
+  end
+
+  def solicited_projects
+    #Projects for which a user has signed up but not yet been approved
+    projs = projects.reject{|proj| proj.admin_id == self.id}
+    projs.select do |project|
+      project.user_projects.detect{|user_project| user_project.user_id == self.id}.approved == false
+    end
   end
 
   # def collaborators

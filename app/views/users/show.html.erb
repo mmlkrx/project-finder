@@ -1,34 +1,52 @@
 <p id="notice"><%= notice %></p>
 
-<h2>I'm now working on...</h2>
-
-<div class="in_progress_user_projects">
-  <% @user.projects.in_progress.each do |project| %>
-    <div>
-      <h4><%= link_to project.title, project %></h4>
-      <p><%= project.description %></p>
-    </div>
-  <% end %>
-</div>
-
-<div class="planned_user_projects">
-  <% @user.projects.in_planning.each do |project| %>
-    <div>
-      <h4><%= link_to project.title, project %></h4>
-      <p><%= project.description %></p>
-    </div>
-  <% end %>
-</div>
-
-<div class="completed_user_projects">
-  <% @user.projects.completed.each do |project| %>
-    <div>
-      <h4><%= link_to project.title, project %></h4>
+<% unless @user.projects.where(admin_id: @user.id).completed.empty?  %>
+  <div class="administrated_projects">
+    <h3>Projects I'm administrating</h3>
+    <% @user.projects.where(admin_id: @user.id).each do |project| %>
+      <div>
+        <h4><%= link_to project.title, project %></h4>
         <p><%= project.description %></p>
-    </div>
-  <% end %>
-</div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 
+<% unless @user.projects_as_collaborator.empty? %>
+  <h3>Projects I'm collaborating on</h3>
+  <div class="projects_as_collaborator">
+    <% @user.projects_as_collaborator.each do |project| %>
+      <div>
+        <h4><%= link_to project.title, project %></h4>
+        <p><%= project.description %></p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<% unless @user.solicited_projects.empty? %>
+  <h3>Projects I'm waiting to join</h3>
+  <div class="solicited_projects">
+    <% @user.solicited_projects.each do |project| %>
+      <div>
+          <h4><%= link_to project.title, project %></h4>
+          <p><%= project.description %></p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<% unless @user.projects.completed.empty? %>
+  <h3>Projects I've completed</h3>
+  <div class="completed_projects">
+    <% @user.projects.completed.each do |project| %>
+      <div>
+        <h4><%= link_to project.title, project %></h4>
+          <p><%= project.description %></p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 
 <%= link_to 'Edit', edit_user_registration_path(current_user) %> |
 <%= link_to 'Back', user_path(current_user) %>

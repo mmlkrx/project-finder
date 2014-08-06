@@ -3,12 +3,27 @@ class Project < ActiveRecord::Base
   has_many :user_projects
   has_many :users, through: :user_projects
 
+  def admin
+    User.find(admin_id)
+  end
+
   def prospective_collaborators
-    
+    #users.joins("user_projects").where("users.id != ?", self.admin_id).where("user_projects.approved = 'false'")
+    prspc = users.reject{|user| user.id == self.admin_id}
+    prspc.reject! do |user|
+      proj = user.user_projects.detect{|proj| proj.project_id == self.id}
+      proj.approved
+    end
+    return prspc
   end
 
   def current_collaborators
-
+    prspc = users.reject{|user| user.id == self.admin_id}
+    prspc.reject! do |user|
+      proj = user.user_projects.detect{|proj| proj.project_id == self.id}
+      proj.approved == false
+    end
+    return prspc
   end
 
   def self.in_planning

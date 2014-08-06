@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   root 'projects#index'
 
   resources :projects, only: [:show, :edit]
+  post 'approve_collaboration' => 'user_projects#approve_collaboration', as: "approve_collaboration"  
 
 end

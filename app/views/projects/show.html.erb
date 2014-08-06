@@ -1,0 +1,19 @@
+<%= @project.title %>
+
+<div class="prospective_collaborators">
+  <% if @project.admin_id == current_user.id || @project.current_collaborators.include?(current_user) %>
+    <% unless @project.prospective_collaborators.empty? %>
+      <% @project.prospective_collaborators.each do |user| %>
+        <div class="prospective_collaborator">
+          <%= user.name %>
+          <div class="skill_set">
+            <% user.skills.each do |skill| %>
+              <div class="skill"><%= skill.name %></div>
+            <% end %>
+          </div>
+          <%= button_to "Approve collaboration", approve_collaboration_path %>
+        </div>
+      <% end  %>
+    <% end %>
+  <% end %>
+</div>
