@@ -1,11 +1,12 @@
 ##Bugs:
 
-- uniq might remove relevant projects <- NO! Why do I have to call uniq?
-
 ##Features:
 
 - be able to leave a project 
-- implement AJAX to select skills from categories
+- as admin mark project as completed
+- implement select2 for skill selection
+- create seed file for categories and skills
+  - create task to seed that file 
 - as admin be able to see prospective collaborators
 - as admin be able to remove team members
 - as admin get notification when someone wants to join team
@@ -26,3 +27,10 @@
 ##Other Ideas
 
 - have construction stripe like background 
+
+##About page
+
+Find people to work on awesome projects
+Endorse other people's skills 
+Chat with them to figure out 
+

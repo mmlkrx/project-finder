@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 brandon = User.create(name: "Brandon Hopkins", email: "bh@foo.com", password: "password123", password_confirmation: "password123")
 tyler = User.create(name: "Tyler Durden", email: "td@foo.com", password: "password123", password_confirmation: "password123")
 randall = User.create(name: "Randall Reed Jr.", email: "rr@foo.com", password: "password123", password_confirmation: "password123")
@@ -23,30 +15,14 @@ randall.projects << project_node
 tyler.projects << [project_mayhem, project_node]
 michael.projects << [project_fun, project_node, project_mayhem]
 
-internet = Category.create(name: "Internet")
-business = Category.create(name: "Business")
+project_mayhem.skills << [Skill.find_by_name("Marketing"), Skill.find_by_name("Copywriting")]
+project_node.skills << [Skill.find_by_name("Node"), Skill.find_by_name("Python"), Skill.find_by_name("Ruby")]
+project_god.skills << Skill.find_by_name("Organizing")
 
-ruby = Skill.create(name: "ruby")
-node = Skill.create(name: "node")
-marketing = Skill.create(name: "marketing")
-copywriting = Skill.create(name: "copywriting")
-python = Skill.create(name: "python")
-database_administration = Skill.create(name: "database administration")
-
-project_mayhem.skills << [marketing, copywriting]
-project_node.skills << [node, python, ruby]
-project_god.skills << database_administration
-
-internet.skills << [ruby, node]
-business.skills << [marketing, copywriting]
-
-internet.save
-business.save
-
-brandon.skills << [ruby, marketing]
-tyler.skills << [node, marketing, copywriting]
-randall.skills << node
-michael.skills << marketing
+brandon.skills << [Skill.find_by_name("Ruby"), Skill.find_by_name("Marketing")]
+tyler.skills << [Skill.find_by_name("Node"), Skill.find_by_name("Marketing"), Skill.find_by_name("Copywriting")]
+randall.skills << Skill.find_by_name("Node")
+michael.skills << Skill.find_by_name("Marketing")
 
 brandon.save
 tyler.save
