@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807204911) do
+ActiveRecord::Schema.define(version: 20140807212824) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20140807204911) do
     t.boolean  "approved",   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "rated",      default: false
   end
 
   create_table "user_skills", force: true do |t|
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140807204911) do
     t.integer  "skill_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "score"
   end
 
   create_table "users", force: true do |t|
