@@ -1,5 +1,13 @@
-<h3><%= @project.title %></h3>
+<h3><%= @project.title %></h3> <p><%= @project.status %></p>
 <div class="project_description"><p><%= @project.description %></p></div>
+  <% if @project.admin == current_user %>
+    <% if @project.status == "planning" %>
+      <%= button_to "Mark as in progress", {controller: "user_projects", action: "in_progress", user_id: current_user.id, project_id: @project.id}, method: :post %>
+    <% end %>
+    <% if @project.status == "in_progress" %>
+      <%= button_to "Mark as completed", {controller: "user_projects", action: "close_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
+    <% end %>
+  <% end %>
   <% unless current_user.projects.include?(@project) %>
     <%= button_to "Volunteer for this project", {controller: "user_projects", action: "apply_for_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
   <% end %>
