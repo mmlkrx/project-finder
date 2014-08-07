@@ -31,9 +31,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  # def collaborators
-  #   #Find all users who are associated with projects that have the current user's id
-  #   projects.joins(:users).where(id: id)
-  # end
+  def self.matching_project_skills(project)
+    project_skill_ids = project.skills.map(&:id)
+    sql_for_skill_ids = project_skill_ids.map{"skill_id = ?"}.join(" OR ")
+    self.joins(:skills).uniq.where(sql_for_skill_ids, *user_skill_ids).order("created_at DESC")  
+  end
 
 end
