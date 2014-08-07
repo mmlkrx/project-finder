@@ -3,6 +3,7 @@
 ##Features:
 
 - be able to leave a project 
+- add column bio to user
 - as admin mark project as completed
 - implement select2 for skill selection
 - create seed file for categories and skills
@@ -11,6 +12,7 @@
 - as admin be able to remove team members
 - as admin get notification when someone wants to join team
 - be able to endorse people's skills
+  - endorsements have weigh depending on how good you are at the skill
 - have a chat
 - display notification next to gravatar (treehouse style)
 - if you don't have gravatar, display name instead
