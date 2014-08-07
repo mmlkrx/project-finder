@@ -1,5 +1,12 @@
 class UserProjectsController < ApplicationController
 
+  def apply_for_project
+    @project = Project.find(params[:project_id])
+    UserProject.create(user_id: params[:user_id], project_id: params[:project_id])
+    flash[:notice] = "You have applied for #{@project.title}"
+    redirect_to @project
+  end
+
   def approve_collaboration
     @user_project = UserProject.find_by(user_id: params[:user_id], project_id: params[:project_id])
     @user_project.approved = true

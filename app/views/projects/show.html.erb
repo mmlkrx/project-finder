@@ -1,6 +1,8 @@
-
 <h3><%= @project.title %></h3>
 <div class="project_description"><p><%= @project.description %></p></div>
+  <% unless current_user.projects.include?(@project) %>
+    <%= button_to "Volunteer for this project", {controller: "user_projects", action: "apply_for_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
+  <% end %>
 
 <div class="project_team">
   <h4>Team</h4>
