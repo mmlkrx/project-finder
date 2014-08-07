@@ -28,7 +28,7 @@
 
 <div class="prospective_collaborators">
   <% if @project.admin_id == current_user.id || @project.current_collaborators.include?(current_user) %>
-    <% unless @project.prospective_collaborators.empty? %>
+    <% unless @project.prospective_collaborators.empty? || @project.status == "completed" %>
     <div class="want_to_join">
       <h4>These people want to join your team</h4>
       <% @project.prospective_collaborators.each do |user| %>
