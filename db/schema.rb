@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140807212824) do
     t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "project_id"
   end
 
   create_table "project_skills", force: true do |t|

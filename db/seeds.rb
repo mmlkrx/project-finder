@@ -30,7 +30,7 @@ randall.save
 michael.save
 
 UserProject.create(user_id: brandon.id, project_id: project_fun.id, approved: true)
-UserProject.create(user_id: randall.id, project_id: project_fun.id, approved: false)
+UserProject.create(user_id: randall.id, project_id: project_fun.id, approved: true)
 UserProject.create(user_id: hercules.id, project_id: project_progress.id, approved: false)
 UserProject.create(user_id: brandon.id, project_id: project_progress.id, approved: true)
 
