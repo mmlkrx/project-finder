@@ -37,6 +37,10 @@ project_mayhem.skills << [marketing, copywriting]
 project_node.skills << [node, python, ruby]
 project_god.skills << database_administration
 
+project_mayhem.save
+project_node.save
+project_god.save
+
 internet.skills << [ruby, node]
 business.skills << [marketing, copywriting]
 

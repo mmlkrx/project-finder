@@ -32,9 +32,13 @@ class User < ActiveRecord::Base
   end
 
   def self.matching_project_skills(project)
-    project_skill_ids = project.skills.map(&:id)
-    sql_for_skill_ids = project_skill_ids.map{"skill_id = ?"}.join(" OR ")
-    self.joins(:skills).uniq.where(sql_for_skill_ids, *user_skill_ids).order("created_at DESC")  
+    if project.skills.length > 0
+      project_skill_ids = project.skills.map(&:id)
+      sql_for_skill_ids = project_skill_ids.map{"skill_id = ?"}.join(" OR ")
+      self.joins(:skills).where(sql_for_skill_ids, *project_skill_ids).reject{|u|u.projects.include?(project)}.uniq.shuffle
+    else
+      return []
+    end
   end
 
 end

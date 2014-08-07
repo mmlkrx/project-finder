@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
 
   def index
     if user_signed_in?
-      @projects = Project.matching_user_skills(current_user)
+    @projects = Project.matching_user_skills(current_user).reject{|p|p.users.include?(current_user)}
     else
       redirect_to about_path
     end
