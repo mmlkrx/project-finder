@@ -5,7 +5,10 @@ class UsersController < ApplicationController
     if @user.notifications.length > 0
       flash.now[:message] = []
       @user.notifications.each do |notification|
-        flash.now[:message] << notification.content
+        flash.now[:message] << {content: notification.content}
+        if notification.project_id
+          flash.now[:message].last[:project] = Project.find(notification.project_id)
+        end
       end
     end
     @user.notifications.delete_all

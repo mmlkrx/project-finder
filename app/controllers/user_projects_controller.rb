@@ -4,6 +4,7 @@ class UserProjectsController < ApplicationController
     @project = Project.find(params[:project_id])
     UserProject.create(user_id: params[:user_id], project_id: params[:project_id])
     flash[:notice] = "You have applied for #{@project.title}"
+    @project.admin.notifications.build(content: "#{current_user.name} has applied to work on #{@project.title}").save
     redirect_to @project
   end
 
@@ -31,7 +32,7 @@ class UserProjectsController < ApplicationController
   def invite
     @user = User.find(params[:user_id])
     @project = Project.find(params[:project_id])
-    @user.notifications.build(content: "#{current_user.name} has invited you to work on <a href='#{project_path(@project)}'>#{@project.title}</a>").save
+    @user.notifications.build(content: "#{current_user.name} has invited you to work on", project_id: params[:project_id]).save
     redirect_to @project
   end
 
