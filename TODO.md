@@ -3,6 +3,7 @@
 ##Features:
 
 - be able to leave a project 
+- let user edit their own skills in users#edit
 - add column bio to user
 - as admin mark project as completed
 - implement select2 for skill selection
