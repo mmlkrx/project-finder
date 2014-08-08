@@ -32,10 +32,12 @@
 <% else %>
   <h3>Projects I'm administrating</h3>
     <% @user.administrating_projects.each do |project| %>
-      <div>
-        <h4><%= link_to project.title, project %></h4>
-        <p><%= project.description %></p>
-      </div>
+      <% unless project.completed? %>
+        <div>
+          <h4><%= link_to project.title, project %></h4>
+          <p><%= project.description %></p>
+        </div>
+      <% end %>
     <% end %>
 <% end %>
 </div>
