@@ -13,6 +13,8 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer',  platforms: :ruby
 
 gem 'faye'
+gem "thin"
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -49,7 +51,6 @@ group :test, :development do
   gem "sqlite3"
   gem "pry"
   gem "guard-rspec", require: false
-  gem "thin"
   gem 'railroady'
 end
 
