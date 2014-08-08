@@ -2,7 +2,7 @@
 
 ##Features:
 
-- when you join a new project, rated should be set to false automatically
+
 - be able to leave a project 
 - let user edit their own skills in users#edit
 - add column bio to user
@@ -14,8 +14,12 @@
 - as admin be able to remove team members
 - as admin get notification when someone wants to join team
 - be able to endorse people's skills
+  - add simple score to endorsement (done)
   - endorsements have weigh depending on how good you are at the skill
-- have a chat
+  - make sure it still shows the skills that haven't been endorsed yet 
+  - make sure one can only endorse collaborators after a project is completed
+  - when you join a new project, rated should be set to false automatically
+- have a chat (done)
 - display notification next to gravatar (treehouse style)
 - if you don't have gravatar, display name instead
 - project removes skill if position filled (conversely adds skill if collaborator leaves)
@@ -25,9 +29,6 @@
 
 ##TODO
 
-- think about how to implement endorsements 
-- where do we want to put the chat
-- how to have endorsements
 
 ##Other Ideas
 

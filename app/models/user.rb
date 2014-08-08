@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   end
 
   def rated?(project)
-    UserProject.where("user_id = ? AND project_id = ?", self.id, project.id).pluck(:rated)[0]
+    UserProject.where("user_id = ? AND project_id = ?", self.id, project.id).pluck(:rated).first
   end
 
   def skill_score(skill)

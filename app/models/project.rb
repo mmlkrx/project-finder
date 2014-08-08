@@ -39,6 +39,10 @@ class Project < ActiveRecord::Base
     where(status: 'completed')
   end
 
+  def not_completed?
+    !(self.status == 'completed')
+  end
+
   # Uniq has to be called because we want a project as soon as one user skill matches one
   # of the project tagged skills. Otherwise it's going to return the same project as often as
   # any user skills match with associated project skills

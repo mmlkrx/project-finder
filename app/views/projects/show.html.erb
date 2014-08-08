@@ -22,8 +22,8 @@
     <% @project.current_collaborators.each do |user| %>
         <div class="team_member_profile">
           <li>
-            <strong><%= user.name %></strong>
-            <% unless user.rated?(@project) || user.id == current_user.id %><!-- don't rate yourself -->
+            <%= user.name %>
+            <% unless user.rated?(@project) || user.id == current_user.id || @project.not_completed? %><!-- don't rate yourself -->
               <ul>
                 <% user.skills.each do |skill| %>
                   <li>
