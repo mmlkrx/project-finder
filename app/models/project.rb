@@ -39,8 +39,12 @@ class Project < ActiveRecord::Base
     where(status: 'completed')
   end
 
+  def completed?
+    self.status == 'completed'
+  end
+
   def not_completed?
-    !(self.status == 'completed')
+    !completed?
   end
 
   # Uniq has to be called because we want a project as soon as one user skill matches one
