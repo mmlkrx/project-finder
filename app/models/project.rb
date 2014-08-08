@@ -18,7 +18,7 @@ class Project < ActiveRecord::Base
   end
 
   def current_collaborators
-    prspc = users.reject{|user| user.id == self.admin_id}
+    prspc = users.reject{|user| user.id == self.admin_id} # excluding Admin from team
     prspc.reject! do |user|
       proj = user.user_projects.detect{|proj| proj.project_id == self.id}
       proj.approved == false

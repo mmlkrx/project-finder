@@ -6,16 +6,20 @@
 
 <div class="project_team">
   <h4>Team</h4>
+  <ul>
   <div class="admin_profile">
-    <strong><%= @project.admin.name %></strong>
+    <strong><li><%= @project.admin.name %></li></strong>
   </div>
   <% if @project.current_collaborators %>
     <% @project.current_collaborators.each do |user| %>
-      <div class="team_member_profile">
-        <strong><%= user.name %></strong>
-      </div>
+        <div class="team_member_profile">
+          <li>
+            <strong><%= user.name %></strong>
+          </li>
+        </div>
     <% end %>
   <% end %>
+  </ul>
 </div>
 
 <div class="prospective_collaborators">
