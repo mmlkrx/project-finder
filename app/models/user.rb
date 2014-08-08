@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :projects, through: :user_projects
  
   has_many :notifications
+  has_many :messages
 
   def as_admin
     self.projects.where(admin_id: self.id)
