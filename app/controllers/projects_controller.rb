@@ -25,6 +25,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @messages = @project.messages
   end
 
   def new
