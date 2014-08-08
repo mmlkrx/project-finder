@@ -3,13 +3,11 @@
 <% unless @user.administrating_projects.empty?  %>
   <div class="administrated_projects">
     <h3>Projects I'm administrating</h3>
-    <% @user.administrating_projects.each do |project| %>
-      <% unless project.completed? %>
+    <% @user.administrating_projects.in_progress_or_planning.each do |project| %>
         <div>
           <h4><%= link_to project.title, project %></h4>
           <p><%= project.description %></p>
         </div>
-      <% end %>
     <% end %>
   </div>
 <% end %>
