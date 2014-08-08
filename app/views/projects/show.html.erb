@@ -23,12 +23,13 @@
         <div class="team_member_profile">
           <li>
             <strong><%= user.name %></strong>
-            <% unless user.rated?(@project) %>
+            <% unless user.rated?(@project) || user.id == current_user.id %><!-- don't rate yourself -->
               <ul>
                 <% user.skills.each do |skill| %>
                   <li>
-                  <%= skill.name %><%= button_to "Endorse!", {controller: "user_projects", action: "update", user_id: user.id, project_id: @project.id, skill_id: skill.id}, method: :post %>
-                </li>
+                    <%= skill.name %>
+                    <%= button_to "Endorse!", {controller: "user_projects", action: "update", user_id: user.id, project_id: @project.id, skill_id: skill.id}, method: :post %>
+                  </li>
                 <% end %>
               </ul>
             <% end %>
@@ -40,8 +41,8 @@
 </div>
 
 <div class="prospective_collaborators">
-  <% if @project.admin_id == current_user.id || @project.current_collaborators.include?(current_user) %>
-    <% unless @project.prospective_collaborators.empty? || @project.status == "completed" %>
+  <% if current_user.is_admin_for?(@project) || @project.current_collaborators.include?(current_user) %>
+    <% unless @project.prospective_collaborators.empty? %>
     <div class="want_to_join">
       <h4>These people want to join your team</h4>
       <% @project.prospective_collaborators.each do |user| %>
@@ -52,7 +53,7 @@
               <div class="skill"><%= skill.name %></div>
             <% end %>
           </div>
-          <% if @project.admin_id == current_user.id %>
+          <% if current_user.is_admin_for?(@project) %>
             <%= button_to "Approve collaboration", {controller: "user_projects", action: "approve_collaboration", user_id: user.id, project_id: @project.id}, method: :post %>
             <%= button_to "Deny collaboration", {controller: "user_projects", action: "deny_collaboration", user_id: user.id, project_id: @project.id}, method: :post %>
           <% end %>
