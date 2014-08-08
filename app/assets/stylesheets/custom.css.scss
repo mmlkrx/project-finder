@@ -1,0 +1,54 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,300italic);
+@import url(http://fonts.googleapis.com/css?family=Yellowtail);
+
+* {
+  color:#34495e;
+}
+
+.about_us h2, .sign_in h2 {
+  font-family: "Yellowtail";
+  font-weight:400;
+  font-size:300%;
+}
+
+
+.navbar-right a {
+  font-family: "Lato", sans-serif;
+  font-size: large;
+}
+
+.about_us, .sign_in {
+  background-color: #ecf0f1;
+  border-radius: 15px;
+  border: 1px solid #34495e;
+  -webkit-box-shadow: 2px 2px 0px 2px rgba(52,73,94,1);
+  -moz-box-shadow: 2px 2px 0px 2px rgba(52,73,94,1);
+  box-shadow: 2px 2px 0px 2px rgba(52,73,94,1);
+  padding: 0 0 20px 0;
+}
+
+
+.about_us p, label {
+  font-family: "Lato";
+  font-size: large;
+  font-weight: 300;
+}
+
+.sign_in a{
+  color:black;
+  font-weight:300;
+  font-style: italic;
+}
+
+.sign_in a:hover{
+  color:white;
+  text-decoration:none;
+}
+
+.about_us, .sign_in {
+  margin-top: 70px;
+}
+
+.btn-primary {
+  background-color: #34495e; 
+}
