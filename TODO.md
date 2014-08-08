@@ -2,6 +2,7 @@
 
 ##Features:
 
+- where are we being routed when someone logs in?
 - display skills and their level in the dashboard
 - be able to leave a project 
 - let user edit their own skills in users#edit
