@@ -16,7 +16,7 @@
   - be able to see prospective collaborators
   - be able to remove team members
   - get notification when someone wants to join team
-  - be able to mark a project as complete
+  - be able to mark a project as complete, in progress, or planning
 
 - be able to endorse people's skills
   - only be able to rate if you're admin

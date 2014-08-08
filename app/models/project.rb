@@ -35,6 +35,10 @@ class Project < ActiveRecord::Base
     where(status: 'in_progress')
   end
 
+  def self.in_progress_or_planning
+    where("status = ? OR status = ?", 'planning', 'in_progress')
+  end
+
   def self.completed
     where(status: 'completed')
   end
