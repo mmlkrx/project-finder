@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post 'invite' => 'user_projects#invite', as: 'invite'
   post 'close_project' => 'user_projects#close_project', as: 'close_project'
   post 'in_progress' => 'user_projects#in_progress', as: 'in_progress'
+  post 'update' => 'user_projects#update', as: 'update'
   get '/about' => 'application#about', as: "about"
 
 end
