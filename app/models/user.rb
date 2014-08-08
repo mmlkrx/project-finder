@@ -42,6 +42,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def rated?(project)
+    UserProject.where("user_id = ? AND project_id = ?", self.id, project.id).pluck(:rated)[0]
+  end
+
   def self.matching_project_skills(project)
     if project.skills.length > 0
       project_skill_ids = project.skills.map(&:id)
