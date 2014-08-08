@@ -2,6 +2,7 @@
 
 ##Features:
 
+- when you join a new project, rated should be set to false automatically
 - be able to leave a project 
 - let user edit their own skills in users#edit
 - add column bio to user

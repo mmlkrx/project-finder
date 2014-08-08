@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post 'deny_collaboration' => 'user_projects#deny_collaboration', as: "deny_collaboration"  
   post 'apply_for_project' => 'user_projects#apply_for_project', as: 'apply_for_project'
   post 'invite' => 'user_projects#invite', as: 'invite'
+  post 'update' => 'user_projects#update', as: 'update'
   get '/about' => 'application#about', as: "about"
 
 end

@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
     UserProject.where("user_id = ? AND project_id = ?", self.id, project.id).pluck(:rated)[0]
   end
 
+  def update_endorsed_skill
+    
+  end
+
   def self.matching_project_skills(project)
     if project.skills.length > 0
       project_skill_ids = project.skills.map(&:id)

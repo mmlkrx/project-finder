@@ -36,4 +36,18 @@ class UserProjectsController < ApplicationController
     redirect_to @project
   end
 
+  def update
+    project = Project.find(params[:project_id])
+    
+    @user_skill = UserSkill.find_by_user_id_and_skill_id(params[:user_id], params[:skill_id])
+    @user_skill.update_score
+    @user_skill.save
+
+    @user_project = UserProject.find_by_user_id_and_project_id(params[:user_id], params[:project_id])
+    @user_project.rated = true
+    @user_project.save
+
+    redirect_to project
+  end
+
 end
