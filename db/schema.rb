@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20140807212824) do
     t.integer  "skill_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "score"
+    t.integer  "score",      default: 1
   end
 
   create_table "users", force: true do |t|

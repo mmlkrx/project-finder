@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :notifications
   has_many :messages
 
-  def as_admin
+  def administrating_projects
     self.projects.where(admin_id: self.id)
   end
 
@@ -32,12 +32,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def is_admin_for?(project)
+    self.id == project.admin_id
+  end
+
   def rated?(project)
     UserProject.where("user_id = ? AND project_id = ?", self.id, project.id).pluck(:rated)[0]
   end
 
-  def update_endorsed_skill
-    
+  def skill_score(skill)
+    UserSkill.find_by_user_id_and_skill_id(self.id, skill.id).pluck(:score).first
   end
 
   def self.matching_project_skills(project)
