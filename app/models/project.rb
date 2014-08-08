@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
 
   has_many :user_projects
   has_many :users, through: :user_projects
+  has_many :messages
 
   has_many :project_skills
   has_many :skills, through: :project_skills
@@ -18,7 +19,7 @@ class Project < ActiveRecord::Base
   end
 
   def current_collaborators
-    prspc = users.reject{|user| user.id == self.admin_id}
+    prspc = users.reject{|user| user.id == self.admin_id} # excluding Admin from team
     prspc.reject! do |user|
       proj = user.user_projects.detect{|proj| proj.project_id == self.id}
       proj.approved == false

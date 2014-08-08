@@ -20,6 +20,7 @@
 - project removes skill if position filled (conversely adds skill if collaborator leaves)
 - have little arrows that show you where your side-nav is and where you have to go
 - by signing up, you agree to our terms of service
+- show message at index if user doesn't have any projects that their skills are relevant to. "Don't have any projects in your area? Create your own!"
 
 ##TODO
 

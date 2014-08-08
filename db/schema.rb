@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 20140807220658) do
     t.datetime "updated_at"
   end
 
+  create_table "messages", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.string   "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "notifications", force: true do |t|
     t.integer  "user_id"
     t.string   "content"

@@ -14,16 +14,20 @@
 
 <div class="project_team">
   <h4>Team</h4>
+  <ul>
   <div class="admin_profile">
-    <strong><%= @project.admin.name %></strong>
+    <strong><li><%= @project.admin.name %></li></strong>
   </div>
   <% if @project.current_collaborators %>
     <% @project.current_collaborators.each do |user| %>
-      <div class="team_member_profile">
-        <strong><%= user.name %></strong>
-      </div>
+        <div class="team_member_profile">
+          <li>
+            <strong><%= user.name %></strong>
+          </li>
+        </div>
     <% end %>
   <% end %>
+  </ul>
 </div>
 
 <div class="prospective_collaborators">
@@ -66,3 +70,27 @@
     <% end %>
   <% end %>
 </div>
+
+<div class="chat_window">
+  <ul id="chat">
+    <%= render @messages %>
+  </ul>
+
+  <%= form_for Message.new, :remote => true do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :project_id, value: @project.id %>
+    <%= f.text_field :text %>
+    <%= f.submit "Send" %>
+  <% end %>
+</div>
+
+<%= javascript_include_tag "http://localhost:9292/faye/client.js" %>
+<script>
+  $(function(){
+    var faye = new Faye.Client('http://localhost:9292/faye')
+    faye.subscribe('/messages/'+<%= @project.id %>,function(data){
+      eval(data)
+    });
+
+  });
+</script>

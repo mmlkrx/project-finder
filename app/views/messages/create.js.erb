@@ -1,0 +1,4 @@
+<% broadcast "/messages/#{@message.project_id}" do %>
+$("#chat").append("<%=j render(@message) %>");
+<% end %>
+$("#new_message")[0].reset();
