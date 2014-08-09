@@ -41,8 +41,11 @@ class UserProjectsController < ApplicationController
     
     @user_skill = UserSkill.find_by_user_id_and_skill_id(params[:user_id], params[:skill_id])
     @user_skill.update_score
-    @user_skill.rated = true
     @user_skill.save
+    
+    @user_skill_project = UserSkillProject.find_by_user_skill_id_and_project_id(@user_skill.id, project.id)
+    @user_skill_project.endorsed = true
+    @user_skill_project.save
 
     redirect_to project
   end
