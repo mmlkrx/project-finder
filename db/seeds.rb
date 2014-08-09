@@ -57,3 +57,24 @@ UserProject.create(user_id: brandon.id, project_id: project_progress.id, approve
 
 UserSkillProject.create(user_skill_id: 10, project_id: 2)
 UserSkillProject.create(user_skill_id: 11, project_id: 5)
+
+# setting hercules to not have piano endorsed for project fun
+UserSkillProject.create(user_skill_id: 15, project_id: 4) # fun MICHAEL
+# setting michael to not have Ruby endorsed for project chat
+UserSkillProject.create(user_skill_id: 10, project_id: 5) # chat BRANDON
+# setting michael to not have Marketing endorsed for project logo
+UserSkillProject.create(user_skill_id: 11, project_id: 6) # logo BRANDON
+
+
+
+
+
+
+
+
+
+
+
+
+
+
