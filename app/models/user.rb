@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   end
 
   def skill_score(skill)
-    UserSkill.find_by_user_id_and_skill_id(self.id, skill.id).pluck(:score).first
+    UserSkill.find_by_user_id_and_skill_id(self.id, skill.id).score
   end
 
   def self.matching_project_skills(project)

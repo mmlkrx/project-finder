@@ -7,7 +7,7 @@ class UserSkill < ActiveRecord::Base
   has_many :projects, through: :user_skill_projects
   
   def self.find_by_user_id_and_skill_id(user_id, skill_id)
-    where("user_id = ? AND skill_id = ?", user_id, skill_id)
+    where("user_id = ? AND skill_id = ?", user_id, skill_id).first
   end
 
   def update_score
