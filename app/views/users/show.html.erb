@@ -1,19 +1,35 @@
-<h1><%= link_to 'Create a new Project', new_project_path %></h1>
+<div class="container-fluid">
+<div class="row">
+<%= render 'sidebar' %>
 
-<% unless @user.invited_projects.empty? %>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+<div id="account_info">
+  <h2><%= @user.name %></h2>
+  <ul><% @user.skills.each do |skill| %>
+    <li><%= skill.name %></li>
+  <% end %>
+  </ul>
+</div>
+
+<div id="invited_projects">
+<% if @user.invited_projects.empty? %>
+  <h3>You have not been invited to work on any projects</h3>
+<% else %>
   <h3>You've been invited to the following projects</h3>
-  <div class="invited_projects">
     <% @user.invited_projects.each do |project| %>
       <div>
           <h4><%= link_to project.title, project %></h4>
           <p><%= project.description %></p>
       </div>
     <% end %>
-  </div>
 <% end %>
+</div>
 
-<% unless @user.as_admin.empty?  %>
-  <div class="administrated_projects">
+<div id="administrated_projects">
+<% if @user.as_admin.empty?  %>
+  <h3>You have not started any projects</h3>
+<% else %>
     <h3>Projects I'm administrating</h3>
     <% @user.as_admin.each do |project| %>
       <div>
@@ -21,44 +37,132 @@
         <p><%= project.description %></p>
       </div>
     <% end %>
-  </div>
 <% end %>
+</div>
 
-<% unless @user.projects_as_collaborator.empty? %>
+<div id="projects_as_collaborator">
+<% if @user.projects_as_collaborator.empty? %>
+  <h3>You are not currently collaborating on any projects</h3>
+  <% else %>
   <h3>Projects I'm collaborating on</h3>
-  <div class="projects_as_collaborator">
     <% @user.projects_as_collaborator.each do |project| %>
       <div>
         <h4><%= link_to project.title, project %></h4>
         <p><%= project.description %></p>
       </div>
     <% end %>
-  </div>
 <% end %>
+</div>
 
-<% unless @user.solicited_projects.empty? %>
+<div id="solicited_projects">
+<% if @user.solicited_projects.empty? %>
+  <h3>You are not waiting to join any projects</h3>
+<% else %>
   <h3>Projects I'm waiting to join</h3>
-  <div class="solicited_projects">
     <% @user.solicited_projects.each do |project| %>
       <div>
           <h4><%= link_to project.title, project %></h4>
           <p><%= project.description %></p>
       </div>
     <% end %>
-  </div>
 <% end %>
+</div>
 
-<% unless @user.projects.completed.empty? %>
+<div id="completed_projects">
+<% if @user.projects.completed.empty? %>
+  <h3>You have no finished projects</h3>
+<% else %>
   <h3>Projects I've completed</h3>
-  <div class="completed_projects">
     <% @user.projects.completed.each do |project| %>
       <div>
         <h4><%= link_to project.title, project %></h4>
           <p><%= project.description %></p>
       </div>
     <% end %>
-  </div>
 <% end %>
+</div>
 
-<%= link_to 'Edit', edit_user_registration_path(current_user) %> |
-<%= link_to 'Back', user_path(current_user) %>
+<div id="new_project_form">
+  <h2>New Project</h2>
+  <%= render 'projects/form' %>
+</div>
+
+<div id="edit_account_form">
+  <h2>Edit User</h2>
+  <%= render 'devise/registrations/edit_form' %>
+</div>
+
+</div>
+</div>
+</div>
+<script>
+  $(function(){
+    function refreshPage(){
+      $('#account_info').hide();
+      $('#new_project_form').hide();
+      $('#edit_account_form').hide();
+      $('#administrated_projects').hide();
+      $('#invited_projects').hide();
+      $('#completed_projects').hide();
+      $('#solicited_projects').hide();
+      $('#projects_as_collaborator').hide();
+    };
+    refreshPage();
+    $('#account_info').show();
+
+    $('#home_page').on('click', function(e){
+      e.preventDefault();
+      refreshPage();
+      $('#account_info').show();
+    });
+
+    $('#new_project_link').on('click', function(e){
+      e.preventDefault();
+      refreshPage();
+      $('#new_project_form').show();
+    });
+
+    $('#administrated_projects_link').on('click', function(e){
+      e.preventDefault();
+      refreshPage();
+      $("#administrated_projects").show();
+    });
+
+    $('#invited_projects_link').on('click', function(e){
+    e.preventDefault();
+    refreshPage();
+    $("#invited_projects").show();
+    });
+
+    $('#projects_as_collaborator_link').on('click', function(e){
+      e.preventDefault();
+      refreshPage();
+      $("#projects_as_collaborator").show();
+    });
+
+    $('#solicited_projects_link').on('click', function(e){
+      e.preventDefault();
+      refreshPage();
+      $("#solicited_projects").show();
+    });
+
+    $('#invited_projects_link').on('click', function(e){
+      e.preventDefault();
+      refreshPage();
+      $("#invited_projects").show();
+    });
+
+    $('#completed_projects_link').on('click', function(e){
+      e.preventDefault();
+      refreshPage();
+      $("#completed_projects").show();
+    });
+
+    $('#edit_account_link').on('click', function(e){
+      e.preventDefault();
+      refreshPage();
+      $("#edit_account_form").show();
+    });
+
+  });
+</script>

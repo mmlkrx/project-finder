@@ -1,6 +1,7 @@
 <div>
   <% @projects.each do |project| %>
     <div>
+      <h2>Here are some projects you might be interested in</h2>
       <h3><%= link_to project.title, project %></h3>
       <p class="project-subhead"><%= "Started looking for collaborators #{time_ago_in_words(project.created_at)} ago" %></p>
       <p><%= project.description %></p>
