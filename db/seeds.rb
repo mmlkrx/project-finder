@@ -53,4 +53,7 @@ UserProject.create(user_id: hercules.id, project_id: project_logo.id, approved: 
 UserProject.create(user_id: hercules.id, project_id: project_progress.id, approved: false)
 UserProject.create(user_id: brandon.id, project_id: project_progress.id, approved: true)
 
+# setting michael to not have ruby been endorsed for project_node and not have marketing endorsed for project_chat
 
+UserSkillProject.create(user_skill_id: 10, project_id: 2)
+UserSkillProject.create(user_skill_id: 11, project_id: 5)

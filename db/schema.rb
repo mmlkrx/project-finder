@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140808235129) do
+ActiveRecord::Schema.define(version: 20140809000201) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -67,7 +67,9 @@ ActiveRecord::Schema.define(version: 20140808235129) do
   end
 
   create_table "user_skill_projects", force: true do |t|
-    t.boolean  "endorsed",   default: false
+    t.integer  "user_skill_id"
+    t.integer  "project_id"
+    t.boolean  "endorsed",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
