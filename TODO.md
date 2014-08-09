@@ -9,6 +9,7 @@
 ##Features:
 
 - site flow
+  - render all procjects on project#index
   - implement select2 for skill selection
   - add column bio to user
   - display skills and their level in the dashboard
