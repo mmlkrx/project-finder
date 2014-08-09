@@ -20,7 +20,7 @@
                 <% user.skills.each do |skill| %>
                   <li>
                     <%= skill.name %>
-                    <% unless skill.rated?(user) || current_user.is_not_admin_for?(@project) %>
+                    <% unless skill.rated?(user, @project) || current_user.is_not_admin_for?(@project) %>
                       <%= button_to "Endorse!", {controller: "user_projects", action: "update", user_id: user.id, project_id: @project.id, skill_id: skill.id}, method: :post %>
                     <% end %>
                   </li>
