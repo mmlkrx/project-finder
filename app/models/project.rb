@@ -6,6 +6,10 @@ class Project < ActiveRecord::Base
 
   has_many :project_skills
   has_many :skills, through: :project_skills
+
+  has_many :user_skill_projects
+  has_many :user_skills, through: :user_skill_projects
+  
   belongs_to :admin, class_name: 'User', foreign_key: :admin_id
 
   def prospective_collaborators
