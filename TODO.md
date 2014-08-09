@@ -1,5 +1,11 @@
 ##Bugs:
 
+- prospective collaborators who have more than one relevant skill appear more than once
+- accepting invitation upon receiving flash notice
+- forbid users from applying to projects that they've already received an invitation for
+- chat only appears if you're part of the team
+- new notification system
+
 ##Features:
 
 - site flow
@@ -29,6 +35,7 @@
 - be able to endorse people's skills
   - endorsements have weight depending on how good you are at the skill
   - when you join a new project, rated should be set to false automatically
+  - when you join a new project, the association has to be made in the joins table
   - ~~only be able to rate if you're admin~~ (done)
   - ~~add simple score to endorsement~~ (done)
   - ~~make sure it still shows the skills that haven't been endorsed yet~~ (done) 

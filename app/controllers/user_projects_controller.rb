@@ -36,6 +36,20 @@ class UserProjectsController < ApplicationController
     redirect_to @project
   end
 
+  def close_project
+    @project = Project.find(params[:project_id])
+    @project.status = "completed"
+    @project.save
+    redirect_to @project
+  end
+
+  def in_progress
+    @project = Project.find(params[:project_id])
+    @project.status = "in_progress"
+    @project.save
+    redirect_to @project
+  end
+
   def update
     project = Project.find(params[:project_id])
     

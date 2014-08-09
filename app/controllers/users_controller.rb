@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show]
 
   def show
+    if @user == current_user
+      @project = Project.new
+    end
     if @user.notifications.length > 0
       flash.now[:message] = []
       @user.notifications.each do |notification|

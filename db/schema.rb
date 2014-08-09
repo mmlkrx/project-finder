@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140809000201) do
     t.boolean  "approved",   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "invitation", default: false
   end
 
   create_table "user_skill_projects", force: true do |t|

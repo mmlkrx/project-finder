@@ -28,7 +28,17 @@ class User < ActiveRecord::Base
     #Projects for which a user has signed up but not yet been approved
     projs = projects.reject{|proj| proj.admin_id == self.id}
     projs.select do |project|
-      project.user_projects.detect{|user_project| user_project.user_id == self.id}.approved == false
+      up = project.user_projects.detect{|user_project| user_project.user_id == self.id}
+      up.approved == false && up.invitation == false
+    end
+  end
+
+  def invited_projects
+    #Projects for which a user has signed up but not yet been approved
+    projs = projects.reject{|proj| proj.admin_id == self.id}
+    projs.select do |project|
+      up = project.user_projects.detect{|user_project| user_project.user_id == self.id}
+      up.approved == false && up.invitation == true
     end
   end
 
