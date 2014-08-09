@@ -1,0 +1,18 @@
+<div class="col-sm-3 col-md-2 sidebar">
+  <ul class="nav nav-sidebar">
+<div class="chat_window">
+  <div class="chat_box clearfix">
+    <ul id="chat">
+      <%= render @messages %>
+    </ul>
+  </div>
+
+  <%= form_for Message.new, :remote => true do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :project_id, value: project.id %>
+    <%= f.text_area :text %>
+    <%= f.submit "Send" %>
+  <% end %>
+</div>
+</div>
+</ul>

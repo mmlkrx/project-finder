@@ -1,17 +1,14 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,300italic);
 @import url(http://fonts.googleapis.com/css?family=Yellowtail);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:800italic);
+@import url(http://fonts.googleapis.com/css?family=Raleway:100);
 
-* {
-  color:#34495e;
-}
 
 .about_us h2, .sign_in h2, .sign_up h2 {
   font-family: "Yellowtail";
   font-weight:800;
   font-size:300%;
 }
-
 
 .navbar-right a {
   font-family: "Lato", sans-serif;
@@ -70,10 +67,6 @@
   background-color:red;
 }
 
-.sign_up{
-
-}
-
 .sign_up_column{
   float:left;
   width:50%;
@@ -98,6 +91,16 @@
   padding-top:20px;
 }
 
+.sidebar .nav li{
+  font-family: "Raleway", sans-serif;
+  background-color:white;
+  border-bottom:1px solid black;
+}
+
+.sidebar .nav li a{
+  color:black;
+}
+
 .sidebar{
   position:fixed;
   top: 51px;
@@ -108,7 +111,31 @@
   padding: 20px;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: #f5f5f5;
-  border-right: 1px solid #eee;
+  background-color: white;
+  border-right: 1px solid black;
   height:100%;
+}
+
+.team_member li{
+  margin-left:-30px;
+  margin-bottom:10px;
+  list-style-type: none;
+}
+
+.gravatar {
+margin-right:12px;
+  border-radius: 50%;
+}
+
+.chat_box{
+  min-height:550px;
+}
+
+.project_team{
+  background-color:#ecf0f1;
+  padding:8px;
+}
+
+.project_team h4{
+  
 }

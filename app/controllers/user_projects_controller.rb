@@ -32,6 +32,8 @@ class UserProjectsController < ApplicationController
   def invite
     @user = User.find(params[:user_id])
     @project = Project.find(params[:project_id])
+    binding.pry
+    UserProject.create(user_id: @user.id, project_id: @project.id).invitation = true
     @user.notifications.build(content: "#{current_user.name} has invited you to work on", project_id: params[:project_id]).save
     redirect_to @project
   end
