@@ -1,5 +1,10 @@
 ##Bugs:
 
+- prospective collaborators who have more than one relevant skill appear more than once
+- accepting invitation upon receiving flash notice
+- forbid users from applying to projects that they've already received an invitation for
+- chat only appears if you're part of the team
+
 ##Features:
 
 - site flow
