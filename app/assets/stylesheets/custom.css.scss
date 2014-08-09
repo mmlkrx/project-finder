@@ -5,7 +5,7 @@
   color:#34495e;
 }
 
-.about_us h2, .sign_in h2 {
+.about_us h2, .sign_in h2, .sign_up h2 {
   font-family: "Yellowtail";
   font-weight:400;
   font-size:300%;
@@ -17,7 +17,7 @@
   font-size: large;
 }
 
-.about_us, .sign_in {
+.about_us, .sign_in, .sign_up {
   background-color: #ecf0f1;
   border-radius: 15px;
   border: 1px solid #34495e;
@@ -25,8 +25,8 @@
   -moz-box-shadow: 2px 2px 0px 2px rgba(52,73,94,1);
   box-shadow: 2px 2px 0px 2px rgba(52,73,94,1);
   padding: 0 0 20px 0;
+  text-align:justify;
 }
-
 
 .about_us p, label {
   font-family: "Lato";
@@ -51,4 +51,48 @@
 
 .btn-primary {
   background-color: #34495e; 
+}
+
+#error_explanation h2{
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-size:14px;
+}
+
+#error_explanation li{
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-size:14px;
+}
+
+.field_with_errors input{
+  background-color:red;
+}
+
+.sign_up{
+
+}
+
+.sign_up_column{
+  float:left;
+  width:50%;
+}
+
+.skills_column{
+  float:left;
+  width:50%;
+}
+
+.skills_column label{
+  font-family: "Yellowtail";
+  font-weight:400;
+  font-size:300%;
+  margin-top:20px;
+  line-height:1.1;
+}
+
+.sign_up_button{
+  margin-top:15px;
+  clear:both;
+  padding-top:20px;
 }
