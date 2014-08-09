@@ -1,17 +1,31 @@
-<div>
+<div class="container-fluid">
+<div class="row">
+<%= render 'home_sidebar' %>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h2>Welcome, <%= current_user.name %>!
+  <% if @projects.empty? %>
+    </h2>
+    <% else %>
+    Here are some projects you might be interested in</h2>
+  <% end %>
   <% @projects.each do |project| %>
-    <div>
-      <h2>Here are some projects you might be interested in</h2>
-      <h3><%= link_to project.title, project %></h3>
-      <p class="project-subhead"><%= "Started looking for collaborators #{time_ago_in_words(project.created_at)} ago" %></p>
-      <p><%= project.description %></p>
-      <div class="required_skills">
+    <div class="project_card col-sm-offset-1 col-md-8">
+      <h3><%= link_to project.title, project, class: "project_title" %></h3>
+      <p class="project_subhead"><%= "Started looking for collaborators #{time_ago_in_words(project.created_at)} ago" %></p>
+      <p class="project_description"><%= project.description %></p>
+      <div class="skills">
+        <p>Required skills:</p>
+        <div class="skill_set">
         <ul>
         <% project.skills.each do |skill| %>
-          <li><%= skill.name %></li>
+          <li><div class="skill_box <%= skill.name %>_box"><span class="icon"></span><div class="skill_name"><%= skill.name %></div></div></li>
         <% end %>
         </ul>
+        </div>
       </div>
     </div>
   <% end %>
+</div>
+</div>
 </div>

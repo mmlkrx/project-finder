@@ -1,0 +1,9 @@
+<div class="project_card col-sm-offset-1 col-md-8">
+  <h3><%= link_to project.title, project, class: "project_title" %></h3>
+  <p class="project_subhead"><%= "Started looking for collaborators #{time_ago_in_words(project.created_at)} ago" %></p>
+  <p class="project_description"><%= project.description %></p>
+  <div class="skills">
+    <p>Required skills:</p>
+      <%= render 'skills/index', skills: project.skills %>
+  </div>
+</div>

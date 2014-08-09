@@ -5,18 +5,19 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 <div id="account_info">
-  <h2><%= @user.name %></h2>
-  <ul><% @user.skills.each do |skill| %>
-    <li><%= skill.name %></li>
-  <% end %>
-  </ul>
+    <h2><%= @user.name %></h2>
+    <div class="skills">
+    <p>My skills:</p>
+    <%= render 'skills/index', skills: @user.skills %>
+    </ul>
+  </div>
 </div>
 
 <div id="invited_projects">
 <% if @user.invited_projects.empty? %>
-  <h3>You have not been invited to work on any projects</h3>
+  <h2>You have not been invited to work on any projects</h2>
 <% else %>
-  <h3>You've been invited to the following projects</h3>
+  <h2>You've been invited to the following projects</h2>
     <% @user.invited_projects.each do |project| %>
       <div>
           <h4><%= link_to project.title, project %></h4>
@@ -28,7 +29,7 @@
 
 <div id="administrated_projects">
 <% if @user.administrating_projects.empty?  %>
-  <h3>You have not started any projects</h3>
+  <h2>You have not started any projects</h2>
 <% else %>
   <h3>Projects I'm administrating</h3>
     <% @user.administrating_projects.in_progress_or_planning.each do |project| %>
@@ -42,9 +43,9 @@
 
 <div id="projects_as_collaborator">
 <% if @user.projects_as_collaborator.empty? %>
-  <h3>You are not currently collaborating on any projects</h3>
+  <h2>You are not currently collaborating on any projects</h2>
   <% else %>
-  <h3>Projects I'm collaborating on</h3>
+  <h2>Projects I'm collaborating on</h2>
     <% @user.projects_as_collaborator.each do |project| %>
       <div>
         <h4><%= link_to project.title, project %></h4>
@@ -56,7 +57,7 @@
 
 <div id="solicited_projects">
 <% if @user.solicited_projects.empty? %>
-  <h3>You are not waiting to join any projects</h3>
+  <h2>You are not waiting to join any projects</h2>
 <% else %>
   <h3>Projects I'm waiting to join</h3>
     <% @user.solicited_projects.each do |project| %>
@@ -70,9 +71,9 @@
 
 <div id="completed_projects">
 <% if @user.projects.completed.empty? %>
-  <h3>You have no finished projects</h3>
+  <h2>You have no finished projects</h2>
 <% else %>
-  <h3>Projects I've completed</h3>
+  <h2>Projects I've completed</h2>
     <% @user.projects.completed.each do |project| %>
       <div>
         <h4><%= link_to project.title, project %></h4>
