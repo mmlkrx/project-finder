@@ -1,17 +1,17 @@
 ##Bugs:
 
-- prospective collaborators who have more than one relevant skill appear more than once
+- prospective collaborators who have more than one relevant skill appear more than once.
+*I believe this is fixed--Brandon
 - accepting invitation upon receiving flash notice
+*Fixed
 - forbid users from applying to projects that they've already received an invitation for
 - chat only appears if you're part of the team
--Looks like the dropdown doesn't work (JS registers as wood carving)
 
 ##Features:
 
 - site flow
-  - implement select2 for skill selection
   - add column bio to user
-  - display skills and their level in the dashboard
+  - User profile page for other users to see
   - display notification next to gravatar (treehouse style)
   - if you don't have gravatar, display name or something else instead
   - ~~create seed file for categories and skills~~ (done)
@@ -21,6 +21,7 @@
 - content
   - by signing up, you agree to our terms of service
   - show message at index if user doesn't have any projects that their skills are relevant to. "Don't have any projects in your area? Create your own!"
+  *I added this link, but need to display the same sidebar that exists in the user dashboard
 
 - as user
   - be able to leave a project

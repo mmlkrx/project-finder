@@ -50,7 +50,9 @@ class User < ActiveRecord::Base
     matching_user_project = self.user_projects.detect do |up|
       up.project_id==project.id
     end
-    matching_user_project.invitation && matching_user_project.approved == false
+    if matching_user_project 
+      matching_user_project.invitation && matching_user_project.approved == false
+    end
   end
 
   def is_not_admin_for?(project)
