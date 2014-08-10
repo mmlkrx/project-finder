@@ -25,10 +25,16 @@ class UserProjectsController < ApplicationController
   end
 
   def accept_invitation
+    @user = User.find(params[:user_id])
     @user_project = UserProject.find_by(user_id: params[:user_id], project_id: params[:project_id])
     @user_project.approved = true
     @user_project.save
     @project = @user_project.project
+
+    @user.user_skills.each do |user_skill|
+      UserSkillProject.create(user_skill_id: user_skill.id, project_id: @project.id)
+    end
+
     flash[:notice] = "#You are now part of the team for #{@project.title}."
     @user_project.project.admin.notifications.build(content: "#{current_user.name} has accepted your request to join the team for #{@user_project.project.title}")
     redirect_to @project
