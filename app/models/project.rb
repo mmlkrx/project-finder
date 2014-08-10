@@ -55,7 +55,10 @@ class Project < ActiveRecord::Base
   end
 
   def skill_matching_users
-    
+    skill_ids = skills.collect{|skill| skill.id}
+    sql_for_skill_ids = skill_ids.map{"skill_id = ?"}.join(" OR ")
+    UserSkill.where(sql_for_skill_ids, *skill_ids)
+    .collect{|us| User.find(us.user_id) unless self.users.include? User.find(us.user_id)}.uniq
   end
 
   # Uniq has to be called because we want a project as soon as one user skill matches one
