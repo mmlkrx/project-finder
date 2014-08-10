@@ -4,18 +4,18 @@
 - prospective collaborators who have more than one relevant skill appear more than once
 - accepting invitation upon receiving flash notice
 - forbid users from applying to projects that they've already received an invitation for
+- project completed page shouldn't show you people that you can invite
 - chat only appears if you're part of the team
 - new notification system
 
 ##Features:
 
 - site flow
-  - render all procjects on project#index
-  - implement select2 for skill selection
+  - add side bar to projects#new
   - add column bio to user
-  - display skills and their level in the dashboard
-  - display notification next to gravatar (treehouse style)
-  - if you don't have gravatar, display name or something else instead
+  - ~~render all recommended procjects on project#index~~ (done)
+  - ~~display skills and their level in the dashboard/user show page~~ (done)
+  - ~~implement select2 for skill selection~~ (done)
   - ~~create seed file for categories and skills~~ (done)
   - ~~create task to seed that file~~ (done)
   - ~~have a chat~~ (done)
@@ -29,10 +29,10 @@
   - be able to edit your own skills in user#edit
 
 - as admin
-  - be able to see prospective collaborators
   - be able to remove team members
-  - get notification when someone wants to join team
-  - be able to mark a project as complete, in progress, or planning
+  - ~~be able to see prospective collaborators~~ (done)
+  - ~~get notification when someone wants to join team~~ (done)
+  - ~~be able to mark a project as complete, in progress, or planning~~ (done)
 
 - be able to endorse people's skills
   - endorsements have weight depending on how good you are at the skill
