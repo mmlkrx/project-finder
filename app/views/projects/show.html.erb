@@ -56,12 +56,12 @@
     </div>
     </div>
 
-    <div class="prospective_collaborators">
+    <div class="prospective_applicants">
       <% if current_user.is_admin_for?(@project) || @project.current_collaborators.include?(current_user) %>
-        <% unless @project.prospective_collaborators.empty? %>
+        <% unless @project.prospective_applicants.empty? %>
         <div class="want_to_join">
           <h4>These people want to join your team</h4>
-          <% @project.prospective_collaborators.each do |user| %>
+          <% @project.prospective_applicants.each do |user| %>
             <div class="prospective_collaborator">
               <%= user.name %>
               <div class="skill_set">

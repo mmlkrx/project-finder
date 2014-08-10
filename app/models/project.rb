@@ -12,14 +12,10 @@ class Project < ActiveRecord::Base
   
   belongs_to :admin, class_name: 'User', foreign_key: :admin_id
 
-  def prospective_collaborators
-    #users.joins("user_projects").where("users.id != ?", self.admin_id).where("user_projects.approved = 'false'")
-    prspc = users.reject{|user| user.id == self.admin_id}
-    prspc.reject! do |user|
-      proj = user.user_projects.detect{|proj| proj.project_id == self.id}
-      proj.approved
-    end
-    return prspc.uniq
+  def prospective_applicants
+    p = Project.find(self.id)
+    UserProject.find_applicants(p).exclude_admin(p).exclude_people_who_are_invited(p)
+               .exclude_people_who_are_approved(p).collect{|up| User.find(up.user_id)}
   end
 
   def current_collaborators
