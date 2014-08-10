@@ -46,6 +46,13 @@ class User < ActiveRecord::Base
     self.id == project.admin_id
   end
 
+  def received_invitation?(project)
+    matching_user_project = self.user_projects.detect do |up|
+      up.project_id==project.id
+    end
+    matching_user_project.invitation && matching_user_project.approved == false
+  end
+
   def is_not_admin_for?(project)
     !is_admin_for?(project)
   end

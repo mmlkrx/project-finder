@@ -4,6 +4,7 @@
 - accepting invitation upon receiving flash notice
 - forbid users from applying to projects that they've already received an invitation for
 - chat only appears if you're part of the team
+-Looks like the dropdown doesn't work (JS registers as wood carving)
 
 ##Features:
 
