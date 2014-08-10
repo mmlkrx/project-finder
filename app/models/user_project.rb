@@ -7,7 +7,7 @@ class UserProject < ActiveRecord::Base
     where("user_id = ? AND project_id = ?", user_id, project_id).first
   end
 
-  def self.find_applicants(project)
+  def self.find(project)
     where("project_id = ?", project.id)
   end
 
@@ -15,12 +15,20 @@ class UserProject < ActiveRecord::Base
     where.not("user_id = ?", project.admin_id)
   end
 
-  def self.exclude_people_who_are_approved(project)
-    where("approved = 'false'")
+  def self.people_who_are_approved(project)
+    where(approved: true)
   end
 
-  def self.exclude_people_who_are_invited(project)
-    where("invitation = 'false'")
+  def self.people_who_are_not_approved(project)
+    where(approved: false)
+  end
+
+  def self.people_who_are_invited(project)
+    where(invitation: true)
+  end
+
+  def self.people_who_are_not_invited(project)
+    where(invitation: false)
   end
   
 end

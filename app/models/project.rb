@@ -14,17 +14,14 @@ class Project < ActiveRecord::Base
 
   def prospective_applicants
     p = Project.find(self.id)
-    UserProject.find_applicants(p).exclude_admin(p).exclude_people_who_are_invited(p)
-               .exclude_people_who_are_approved(p).collect{|up| User.find(up.user_id)}
+    UserProject.find(p).people_who_are_not_invited(p).people_who_are_not_approved(p)
+                       .exclude_admin(p).collect{|up| User.find(up.user_id)}.uniq
   end
 
   def current_collaborators
-    prspc = users.reject{|user| user.id == self.admin_id} # excluding Admin from team
-    prspc.reject! do |user|
-      proj = user.user_projects.detect{|proj| proj.project_id == self.id}
-      proj.approved == false
-    end
-    return prspc.uniq
+    p = Project.find(self.id)
+    UserProject.find(p).people_who_are_approved(p).exclude_admin(p)
+               .collect{|up| User.find(up.user_id)}.uniq
   end
 
   def self.in_planning
