@@ -14,6 +14,11 @@ class UserProjectsController < ApplicationController
     @user_project.save
     @user = User.find(params[:user_id])
     @project = Project.find(params[:project_id])
+
+    @user.user_skills.each do |user_skill|
+      UserSkillProject.create(user_skill_id: user_skill.id, project_id: @project.id)
+    end
+
     @user.notifications.build(content: "#{current_user.name} has approved you to work on #{@project.title}").save
     flash[:notice] = "#{@user.name} has been added to your team"
     redirect_to @project
@@ -32,7 +37,6 @@ class UserProjectsController < ApplicationController
   def invite
     @user = User.find(params[:user_id])
     @project = Project.find(params[:project_id])
-    binding.pry
     UserProject.create(user_id: @user.id, project_id: @project.id).invitation = true
     @user.notifications.build(content: "#{current_user.name} has invited you to work on", project_id: params[:project_id]).save
     redirect_to @project

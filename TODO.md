@@ -1,5 +1,6 @@
 ##Bugs:
 
+- when sending out an invite to people, they'll immediately show up as wanting to join
 - prospective collaborators who have more than one relevant skill appear more than once
 - accepting invitation upon receiving flash notice
 - forbid users from applying to projects that they've already received an invitation for
@@ -35,8 +36,7 @@
 
 - be able to endorse people's skills
   - endorsements have weight depending on how good you are at the skill
-  - when you join a new project, rated should be set to false automatically
-  - when you join a new project, the association has to be made in the joins table
+  - ~~when you join a new project, the association has to be made in the joins table~~ (done)
   - ~~only be able to rate if you're admin~~ (done)
   - ~~add simple score to endorsement~~ (done)
   - ~~make sure it still shows the skills that haven't been endorsed yet~~ (done) 
@@ -59,4 +59,9 @@
 Find people to work on awesome projects
 Endorse other people's skills 
 Chat with them to figure out 
+
+
+##animations
+
+jquery animations
 
