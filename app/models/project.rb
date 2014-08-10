@@ -19,7 +19,7 @@ class Project < ActiveRecord::Base
       proj = user.user_projects.detect{|proj| proj.project_id == self.id}
       proj.approved
     end
-    return prspc
+    return prspc.uniq
   end
 
   def current_collaborators
@@ -28,7 +28,7 @@ class Project < ActiveRecord::Base
       proj = user.user_projects.detect{|proj| proj.project_id == self.id}
       proj.approved == false
     end
-    return prspc
+    return prspc.uniq
   end
 
   def self.in_planning
