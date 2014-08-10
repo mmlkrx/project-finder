@@ -3,11 +3,14 @@
     <h2 class="project_title"><%= @project.title %></h2> 
 
     <div class="project_subhead project_status"><%= @project.status %>
-        <% unless current_user.projects.include?(@project) %>
-      <div class="status_bar">
-      <%= button_to "Volunteer for this project", {controller: "user_projects", action: "apply_for_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
-      </div>
-    <% end %>
+      <% if current_user.received_invitation?(@project) %>
+        <div class="status_bar">
+        <%= button_to "You've been invited to this project. Click to accept Invitation", {controller: "user_projects", action: "accept_invitation", user_id: current_user.id, project_id: @project.id}, method: :post %>
+      <% elsif !current_user.projects.include?(@project) %>
+        <div class="status_bar">
+        <%= button_to "Volunteer for this project", {controller: "user_projects", action: "apply_for_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
+        </div>
+      <% end %>
       <div class="status_bar">
       <% if @project.admin == current_user %>
         <% if @project.status == "planning" %>

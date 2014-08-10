@@ -1,12 +1,12 @@
 ##Bugs:
 
 - when sending out an invite to people, they'll immediately show up as wanting to join
-- prospective collaborators who have more than one relevant skill appear more than once
 - accepting invitation upon receiving flash notice
 - forbid users from applying to projects that they've already received an invitation for
 - project completed page shouldn't show you people that you can invite
 - chat only appears if you're part of the team
 - new notification system
+- ~~prospective collaborators who have more than one relevant skill appear more than once~~ (done)
 
 ##Features:
 
@@ -23,6 +23,7 @@
 - content
   - by signing up, you agree to our terms of service
   - show message at index if user doesn't have any projects that their skills are relevant to. "Don't have any projects in your area? Create your own!"
+  *I added this link, but need to display the same sidebar that exists in the user dashboard
 
 - as user
   - be able to leave a project

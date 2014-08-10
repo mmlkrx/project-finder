@@ -24,6 +24,16 @@ class UserProjectsController < ApplicationController
     redirect_to @project
   end
 
+  def accept_invitation
+    @user_project = UserProject.find_by(user_id: params[:user_id], project_id: params[:project_id])
+    @user_project.approved = true
+    @user_project.save
+    @project = @user_project.project
+    flash[:notice] = "#You are now part of the team for #{@project.title}."
+    @user_project.project.admin.notifications.build(content: "#{current_user.name} has accepted your request to join the team for #{@user_project.project.title}")
+    redirect_to @project
+  end
+
   def deny_collaboration
     @user = User.find(params[:user_id])
     @project = Project.find(params[:project_id])
@@ -37,8 +47,13 @@ class UserProjectsController < ApplicationController
   def invite
     @user = User.find(params[:user_id])
     @project = Project.find(params[:project_id])
-    UserProject.create(user_id: @user.id, project_id: @project.id).invitation = true
+    
+    up = UserProject.create(user_id: @user.id, project_id: @project.id)
+    up.invitation = true
+    up.save
+
     @user.notifications.build(content: "#{current_user.name} has invited you to work on", project_id: params[:project_id]).save
+    flash[:notice] = "You invited #{@user.name} to join your team!"
     redirect_to @project
   end
 

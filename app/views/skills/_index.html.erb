@@ -1,7 +1,7 @@
 <div class="skill_set">
   <ul>
-  <% skills.each do |skill| %>
-    <li><div class="skill_box <%= skill.name %>_box"><span class="icon"></span><div class="skill_name"><%= skill.name %></div></div></li>
+  <% @user.skills.each do |skill| %>
+    <li><div class="skill_box <%= skill.name %>_box"><span class="icon"></span><div class="skill_name"><%= skill.name %><% if @user.skill_score(skill) > 1 %><sup><%= @user.skill_score(skill) %></sup><% end %></div></div></li>
   <% end %>
   </ul>
 </div>

@@ -84,7 +84,7 @@ h2 {
 }
 
 .skills li .skill_box{
-  width:130px;
+  width:150px;
   height:36px;
   line-height:12px;
   padding-left:15px;
@@ -175,4 +175,16 @@ h2 {
   -webkit-box-shadow: 0px 2px 0px 0px rgba(132,10,0,0.94);
   -moz-box-shadow: 0px 2px 0px 0px rgba(132,10,0,0.94);
   box-shadow: 0px 2px 0px 0px rgba(132,10,0,0.94);
+}
+
+.JavaScript_box .icon:before{
+  content: "\f148";
+}
+
+.JavaScript_box {
+  color: black;
+  background-color: rgb(254, 219, 0);
+  -webkit-box-shadow: 0px 2px 0px 0px rgba(214,187,0,0.94);
+  -moz-box-shadow: 0px 2px 0px 0px rgba(214,187,0,0.94);
+  box-shadow: 0px 2px 0px 0px rgba(214,187,0,0.94);
 }
