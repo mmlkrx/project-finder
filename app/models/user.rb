@@ -68,7 +68,9 @@ class User < ActiveRecord::Base
   end
 
   def relevant_skills_for(project)
-    
+    project_skill_ids = project.skills.map(&:id)
+    sql_for_skill_ids = project_skill_ids.map{"user_skills.skill_id = ?"}.join(" OR ")
+    skills.where(sql_for_skill_ids, *project_skill_ids)
   end
 
   def self.matching_project_skills(project)
