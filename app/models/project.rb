@@ -48,6 +48,16 @@ class Project < ActiveRecord::Base
     !completed?
   end
 
+  def has_matching_user_skills?
+    skill_ids = skills.collect{|skill| skill.id}
+    sql_for_skill_ids = skill_ids.map{"skill_id = ?"}.join(" OR ")
+    !UserSkill.where(sql_for_skill_ids, *skill_ids).empty?
+  end
+
+  def skill_matching_users
+    
+  end
+
   # Uniq has to be called because we want a project as soon as one user skill matches one
   # of the project tagged skills. Otherwise it's going to return the same project as often as
   # any user skills match with associated project skills

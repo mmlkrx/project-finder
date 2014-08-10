@@ -1,7 +1,7 @@
 ##Bugs:
 
 - when sending out an invite to people, they'll immediately show up as wanting to join
-- accepting invitation upon receiving flash notice
+- ~~accepting invitation upon receiving flash notice~~ (done)
 - forbid users from applying to projects that they've already received an invitation for
 - project completed page shouldn't show you people that you can invite
 - chat only appears if you're part of the team

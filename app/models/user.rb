@@ -67,11 +67,16 @@ class User < ActiveRecord::Base
     UserSkill.find_by_user_id_and_skill_id(self.id, skill.id).score
   end
 
+  def relevant_skills_for(project)
+    
+  end
+
   def self.matching_project_skills(project)
     if project.skills.length > 0
       project_skill_ids = project.skills.map(&:id)
       sql_for_skill_ids = project_skill_ids.map{"skill_id = ?"}.join(" OR ")
-      self.joins(:skills).where(sql_for_skill_ids, *project_skill_ids).reject{|u|u.projects.include?(project)}.uniq.shuffle
+      self.joins(:skills).where(sql_for_skill_ids, *project_skill_ids)
+      .reject{|u|u.projects.include?(project)}.uniq.shuffle
     else
       return []
     end

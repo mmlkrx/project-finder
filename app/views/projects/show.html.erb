@@ -78,21 +78,25 @@
           <% end  %>
         </div>
         <% end %>
-        <div class="suggested_collaborators">
-          <% if User.matching_project_skills(@project).reject{|u|u == current_user}.length > 0 %>
-          <h4>These people have skills your project is looking for:</h4>
-          <% User.matching_project_skills(@project).reject{|u|u == current_user}.reject{|u| u.user_projects.detect{|up|up.project_id==@project.id}}.each do |user| %>
-            <div class="prospective_collaborator">
-              <p><%= user.name %><br/>
-                Relevant skills:<br/>
-                <% user.skills.select{|skill|@project.skills.include?(skill)}.each do |skill| %>
-                  <div class="skill_tab"><%= skill.name %></div>
-                <% end %>
-              </p>
-              <%= button_to "Invite to project", {controller: "user_projects", action: "invite", user_id: user.id, project_id: @project.id}, method: :post %>
-            </div>
-          <% end %>
-        </div>
+        <% unless @project.completed? %>
+          <div class="suggested_collaborators">
+            <% if @project.has_matching_user_skills? %>
+            <h4>These people have skills your project is looking for:</h4>
+              <% @project.skill_matching_users.each do |user| %>
+                <div class="prospective_collaborator">
+                  <p><%= user.name %><br/>
+                    Relevant skills:<br/>
+                    <% user.relevant_skills_for(@project).each do |skill| %>
+                      <div class="skill_tab"><%= skill.name %></div>
+                    <% end %>
+                  </p>
+                  <%= button_to "Invite to project", {controller: "user_projects", action: "invite", user_id: user.id, project_id: @project.id}, method: :post %>
+                </div>
+              <% end %>
+            <% else %>
+              <h3>No one seems to have the skills you need :/</h3>
+            <% end %>
+          </div>
         <% end %>
       <% end %>
   </div>
