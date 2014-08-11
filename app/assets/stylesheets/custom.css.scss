@@ -2,6 +2,7 @@
 @import url(http://fonts.googleapis.com/css?family=Yellowtail);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:800italic);
 @import url(http://fonts.googleapis.com/css?family=Raleway:100);
+@import url(http://fonts.googleapis.com/css?family=Neuton:300,400italic);
 
 @media all{
 .navbar, .navbar-header{
@@ -9,53 +10,73 @@
   padding-top:5px;
   margin-top:0;
 }
+.alert{
+  margin-top:90px;
+}
+.alert-success{
+  background-image:none;
+  color: rgb(24, 191, 0);
+  border: 1px solid solid rgb(24, 191, 0);
+  font-family:'Raleway';
+  font-weight:100;
+}
+
+.about_us, .sign_in{
+  margin-top:100px;
+}
+
 }
 
 .about_us h2, .sign_in h2, .sign_up h2 {
-  font-family: "Yellowtail";
-  font-weight:800;
-  font-size:300%;
+  font-family: "Neuton";
+  text-align:center;
+  font-weight:300;
+  font-style:italic;
+  font-size:200%;
 }
 
 .navbar-right a {
-  font-family: "Lato", sans-serif;
+  font-family: "Neuton", serif;
   font-size: large;
+  font-weight:400;
+  font-style:italic;
 }
 
 .about_us, .sign_in, .sign_up {
-  background-color: #ecf0f1;
-  border-radius: 15px;
-  border: 1px solid #34495e;
-  -webkit-box-shadow: 2px 2px 0px 2px rgba(52,73,94,1);
-  -moz-box-shadow: 2px 2px 0px 2px rgba(52,73,94,1);
-  box-shadow: 2px 2px 0px 2px rgba(52,73,94,1);
-  padding: 0 0 20px 0;
+  background-color:#ecf0f1;
+  padding:8px;
+  border-radius:5px;
+  border: 1px solid rgb(24, 191, 0);
   text-align:justify;
 }
 
 .about_us p, label {
-  font-family: "Lato";
+  font-family: "Neuton";
   font-size: large;
-  font-weight: 300;
+  font-weight: 400;
+  font-style:italic;
 }
 
 .sign_in a{
-  color:black;
-  font-weight:300;
+  color:rgb(24, 191, 0);
+  font-family:"Neuton";
+  font-weight:400;
   font-style: italic;
+  font-size:1.2em;
 }
 
 .sign_in a:hover{
-  color:white;
+  color:black;
   text-decoration:none;
 }
 
-.about_us, .sign_in {
-  margin-top: 70px;
+.about_us{
+  background:white;
+  margin-left:60px;
 }
 
-.btn-primary {
-  background-color: #34495e; 
+.about_us, .sign_in {
+  margin-top: 130px;
 }
 
 #error_explanation h2{
