@@ -1,0 +1,277 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:100,600);
+@import url(http://fonts.googleapis.com/css?family=Neuton:300,400italic);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:800italic);
+
+h2 {
+  font-family: "Neuton";
+  font-weight:300;
+}
+
+.project_title{
+  font-family:"Raleway";
+  font-weight:100;
+  font-size:2em;
+  color:rgb(24,191,0);
+}
+
+.project_subhead{
+  margin-top:-15px;
+  padding-left:18px;
+  font-size:.8em;
+  font-family: "Neuton", serif;
+  font-style:italic;
+  font-weight:400;
+}
+
+.project_title:hover{
+  text-decoration:none;
+}
+
+.project_description{
+  font-family: "Neuton", serif;
+  font-weight:300;
+  font-size:1.3em;
+}
+
+.status_bar{
+  display:inline-block;
+}
+
+.status_bar h2{
+  display:inline-block
+}
+
+.status_bar form {
+  display:inline-block;
+}
+
+.status_bar input[type=submit]{
+  color:rgb(24,191,0);
+  display:inline-block;
+  border:none;
+  padding:0;
+  background:none;
+}
+
+h2 a{
+  color:rgb(24,191,0);
+  font-family: "Raleway", sans-serif;
+}
+
+.action_bar{
+  display:inline-block;
+  color:rgb(24,191,0);
+  padding:2px 3px 2px 3px;
+  background-color:rgb(236,240,241);
+  border-radius:5px;
+}
+
+.action_bar input[type=submit]{
+  background-color:rgb(236,240,241);
+  display:inline-block;
+  border:none;
+  font-size:1.3em;
+  font-family: "Neuton", serif;
+  font-weight:300;
+}
+
+.skills {
+  padding-top:10px;
+  background-color:#ecf0f1;
+  margin-top: 20px;
+  min-height:90px;
+  border:1px solid rgb(24,191,0);
+  border-radius:5px;
+}
+
+.skill_set {
+  margin:auto;
+  width:500px;
+}
+
+.skills p {
+  padding-left: 18px;
+  font-family: "Neuton", serif;
+  font-weight:300;
+}
+
+.project_card{
+  background-color:white;
+ border: 1px solid gray;
+ border-radius: 5px;
+ margin-bottom:15px;
+ margin-top:10px;
+ padding:0 25px 25px 20px;
+}
+
+.project_team h3{
+  font-family: "Neuton";
+  font-weight:300;
+  font-size:1.4em;
+  font-color:black;
+  margin-left:14px;
+}
+
+.team_admin_name a{
+  color:rgb(24,191,0);
+  font-family: "Neuton";
+  font-weight:400;
+  font-style:italic;
+  font-size:1.2em;
+}
+
+.team_admin_name a:hover{
+  text-decoration:none;
+  color:black;
+}
+
+.team_member_name, .team_admin_name{
+  font-family: "Neuton";
+  font-weight:400;
+  font-style:italic;
+  font-size:1.2em;
+  color:black;
+}
+
+.team_admin_name{
+  color:rgb(24,191,0);
+}
+
+.team_member_name a{
+  color:black;
+}
+
+.team_member_name:hover{
+  font-decoration:none;
+  color:black;
+}
+
+.team_admin a:hover{
+  text-decoration:none;
+  color:black;
+}
+
+.skills li{
+  list-style-type:none;
+  display:inline-block;
+}
+
+.skill_box{
+  -webkit-box-shadow: 0px 2px 0px 0px black;
+  -moz-box-shadow: 0px 2px 0px 0px black;
+  box-shadow: 0px 2px 0px 0px black;
+}
+
+.skills li .skill_box{
+  width:130px;
+  height:36px;
+  line-height:12px;
+  padding-left:5px;
+  padding-top:8px;
+  padding-bottom:20px;
+  float:left;
+  margin-left:10px;
+}
+
+.skill_name{
+  display:inline-block;
+  font-family: "Raleway", sans-serif;
+  font-weight:100;
+  font-size:1.2em;
+  height:10px;
+  margin-top:10px;
+}
+
+@font-face {
+  font-family: "FontMfizz";
+  src: url("font-mfizz.eot");
+  src: url("font-mfizz.eot?#iefix") format("embedded-opentype"),
+       url("font-mfizz.svg#font-mfizz") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.skill_box{
+  color:white;
+  background:black;
+}
+
+.Node_box {
+  color:rgb(48, 48, 48);
+  background-color: rgb(129, 189, 0);
+  -webkit-box-shadow: 0px 2px 0px 0px rgba(81,111,0,0.94);
+  -moz-box-shadow: 0px 2px 0px 0px rgba(81,111,0,0.94);
+  box-shadow: 0px 2px 0px 0px rgba(81,111,0,0.94);
+}
+
+.skill_box icon:before{
+  font-family: "FontMfizz";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+.skill_box .icon{
+  padding-top:8px;
+  margin-right:4px;
+  display:inline-block;
+  font-size:2em;
+  font-family:"FontMfizz";
+}
+
+.Node_box .icon:before{
+  content: "\f14c";
+}
+
+.Python_box .icon:before{
+  content: "\f109";
+}
+
+.Python_box {
+  color: rgb(77, 124, 192);
+  background-color: rgb(250, 220, 43);
+  -webkit-box-shadow: 0px 2px 0px 0px rgba(255,197,0,0.94);
+  -moz-box-shadow: 0px 2px 0px 0px rgba(255,197,0,0.94);
+  box-shadow: 0px 2px 0px 0px rgba(255,197,0,0.94);
+}
+
+.Python_box {
+  color: rgb(77, 124, 192);
+}
+
+.Ruby_box .icon:before{
+  content: "\f120";
+}
+
+.Ruby_box {
+  color: white;
+  background-color: rgb(221, 67, 51);
+  -webkit-box-shadow: 0px 2px 0px 0px rgba(132,10,0,0.94);
+  -moz-box-shadow: 0px 2px 0px 0px rgba(132,10,0,0.94);
+  box-shadow: 0px 2px 0px 0px rgba(132,10,0,0.94);
+}
+
+.JavaScript_box .icon:before{
+  content: "\f148";
+}
+
+.JavaScript_box {
+  color: black;
+  background-color: rgb(254, 219, 0);
+  -webkit-box-shadow: 0px 2px 0px 0px rgba(214,187,0,0.94);
+  -moz-box-shadow: 0px 2px 0px 0px rgba(214,187,0,0.94);
+  box-shadow: 0px 2px 0px 0px rgba(214,187,0,0.94);
+}
+
+.endorse_button{
+  color:rgb(24,191,0);
+  background:none;
+  border:none;
+  display:inline-block;
+  float:left;
+}

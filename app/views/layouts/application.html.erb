@@ -12,18 +12,18 @@
 <%= render 'layouts/header' %>
 
 <% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
+  <p class="alert alert-success col-sm-offset-3 col-md-8"><%= notice %></p>
 <% end %>
 <% if flash[:message] %>
   <% flash[:message].each do |message| %>
-    <p class="alert alert-success"><%= message[:content] %>
+    <p class="alert alert-success col-sm-offset-3 col-md-8"><%= message[:content] %>
     <% if message[:project] %>
       <%= link_to message[:project].title, message[:project] %>
     <% end %></p>
   <% end %>
 <% end %>
 <% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
+  <p class="alert alert-danger col-sm-offset-3 col-md-8"><%= alert %></p>
 <% end %>
 
 <%= yield %>

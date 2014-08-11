@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
       redirect_to current_user
     else
       flash.now[:alert] = "Project was not saved properly."
-      render 'projects/index'
+      redirect_to @project
     end
   end
 

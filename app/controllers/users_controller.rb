@@ -2,12 +2,15 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show]
 
   def show
-    if @user.notifications.length > 0
-      flash.now[:message] = []
-      @user.notifications.each do |notification|
-        flash.now[:message] << {content: notification.content}
-        if notification.project_id
-          flash.now[:message].last[:project] = Project.find(notification.project_id)
+    if @user == current_user
+      @project = Project.new
+      if @user.notifications.length > 0
+        flash.now[:message] = []
+        @user.notifications.each do |notification|
+          flash.now[:message] << {content: notification.content}
+          if notification.project_id
+            flash.now[:message].last[:project] = Project.find(notification.project_id)
+          end
         end
       end
     end

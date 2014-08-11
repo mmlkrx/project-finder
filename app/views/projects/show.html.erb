@@ -1,88 +1,150 @@
-<h3><%= @project.title %></h3> <p><%= @project.status %></p>
-<div class="project_description"><p><%= @project.description %></p></div>
-  <% if @project.admin == current_user %>
-    <% if @project.status == "planning" %>
-      <%= button_to "Mark as in progress", {controller: "user_projects", action: "in_progress", user_id: current_user.id, project_id: @project.id}, method: :post %>
+<div class="row"><div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <div class="project_card col-sm-offset-1 col-md-8">
+    <h3 class="project_title"><%= @project.title %></h3> 
+    
+    <% if current_user.received_invitation?(@project) %>
+      <div class="action_bar">
+      <%= button_to "You've been invited to this project. Click to accept Invitation", {controller: "user_projects", action: "accept_invitation", user_id: current_user.id, project_id: @project.id}, method: :post %>
+      </div>
+    <% elsif !current_user.projects.include?(@project) %>
+      <div class="action_bar">
+      <%= button_to "Volunteer for this project", {controller: "user_projects", action: "apply_for_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
+      </div>
+    <% elsif current_user.projects_as_collaborator.include?(@project) %>
+      <div class="action_bar">
+        <%= button_to "Leave this project", {controller: "user_projects", action: "leave_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
+      </div>
     <% end %>
-    <% if @project.status == "in_progress" %>
-      <%= button_to "Mark as completed", {controller: "user_projects", action: "close_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
-    <% end %>
-  <% end %>
-  <% unless current_user.projects.include?(@project) %>
-    <%= button_to "Volunteer for this project", {controller: "user_projects", action: "apply_for_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
-  <% end %>
-
-<div class="project_team">
-  <h4>Team</h4>
-  <ul>
-  <div class="admin_profile">
-    <strong><li><%= @project.admin.name %></li></strong>
-  </div>
-  <% if @project.current_collaborators %>
-    <% @project.current_collaborators.each do |user| %>
-        <div class="team_member_profile">
-          <li>
-            <strong><%= user.name %></strong>
-          </li>
-        </div>
-    <% end %>
-  <% end %>
-  </ul>
-</div>
-
-<div class="prospective_collaborators">
-  <% if @project.admin_id == current_user.id || @project.current_collaborators.include?(current_user) %>
-    <% unless @project.prospective_collaborators.empty? || @project.status == "completed" %>
-    <div class="want_to_join">
-      <h4>These people want to join your team</h4>
-      <% @project.prospective_collaborators.each do |user| %>
-        <div class="prospective_collaborator">
-          <%= user.name %>
-          <div class="skill_set">
-            <% user.skills.each do |skill| %>
-              <div class="skill"><%= skill.name %></div>
+    
+      <div class="status_bar">
+        <div class="project_subhead project_status">
+          <%= @project.status %>
+          <% if @project.admin == current_user %>
+            <% if @project.status == "planning" %>
+              <%= button_to "Mark as in progress", {controller: "user_projects", action: "in_progress", user_id: current_user.id, project_id: @project.id}, method: :post %>
             <% end %>
-          </div>
-          <% if @project.admin_id == current_user.id %>
-            <%= button_to "Approve collaboration", {controller: "user_projects", action: "approve_collaboration", user_id: user.id, project_id: @project.id}, method: :post %>
-            <%= button_to "Deny collaboration", {controller: "user_projects", action: "deny_collaboration", user_id: user.id, project_id: @project.id}, method: :post %>
+            <% if @project.status == "in_progress" %>
+              <%= button_to "Mark as completed", {controller: "user_projects", action: "close_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
+            <% end %>
           <% end %>
         </div>
-        </div>
-      <% end  %>
     </div>
-    <% end %>
-    <div class="suggested_collaborators">
-      <% if User.matching_project_skills(@project).reject{|u|u == current_user}.length > 0 %>
-      <h4>These people have skills your project is looking for:</h4>
-      <% User.matching_project_skills(@project).reject{|u|u == current_user}.each do |user| %>
-        <div class="prospective_collaborator">
-          <p><%= user.name %><br/>
-            Relevant skills:<br/>
-            <% user.skills.select{|skill|@project.skills.include?(skill)}.each do |skill| %>
-              <div class="skill_tab"><%= skill.name %></div>
-            <% end %>
-          </p>
-          <%= button_to "Invite to project", {controller: "user_projects", action: "invite", user_id: user.id, project_id: @project.id}, method: :post %>
-        </div>
+
+    <div class="project_description"><p><%= @project.description %></p></div>
+
+    <div class="project_team">
+      <h3>Team</h3>
+      <ul>
+      <div class="team_member">
+          <% if @project.admin == current_user %>
+            <li class="team_admin_name"><%= image_tag avatar_url(@project.admin), class: "gravatar" %>
+            <%= @project.admin.name %>
+          <% else %>
+            <li class="team_admin_name"><%= image_tag avatar_url(@project.admin), class: "gravatar" %>
+            <%= link_to @project.admin.name, user_path(@project.admin) %></li>
+          <% end %>
+      </div>
+      <% if @project.current_collaborators %>
+        <% @project.current_collaborators.each do |user| %>
+            <div class="team_member">
+              <li class="team_member_name">
+                <%= image_tag avatar_url(user), class: "gravatar" %>
+                <% if user == current_user %>
+                  <%= user.name %>
+                <% else %>
+                  <%= link_to user.name, user_path(user) %>
+                <% end %>
+                </li>
+                <% if @project.admin == current_user && @project.not_completed? %>
+                  <div class="action_bar remove_user_button">
+                    <%= button_to "Remove this team member", {controller: "user_projects", action: "remove_user_from_project", user_id: user.id, project_id: @project.id}, method: :post %>
+                  </div>
+                <% end %>
+                <% unless user.id == current_user.id || @project.not_completed? %><!-- don't rate yourself -->
+                    <div class="skills">
+                    <p>Skills:</p>
+                      <div class="skill_set">
+                        <ul>
+                          <% user.skills.each do |skill| %>
+                              <%= render partial: 'skills/skill', locals: {skill: skill, user: user, project: @project} %>
+                          <% end %>
+                        </ul>
+                      </div>
+                    </div>
+                <% end %>
+            </div>
+        <% end %>
       <% end %>
+      </ul>
     </div>
-    <% end %>
-  <% end %>
+    </div>
+
+    <div class="prospective_applicants">
+      <% if current_user.is_admin_for?(@project) || @project.current_collaborators.include?(current_user) %>
+        <% unless @project.prospective_applicants.empty? %>
+        <div class="want_to_join">
+          <h4>These people want to join your team</h4>
+          <% @project.prospective_applicants.each do |user| %>
+            <div class="prospective_collaborator">
+              <%= user.name %>
+              <div class="skill_set">
+                <% user.skills.each do |skill| %>
+                  <div class="skill"><%= skill.name %></div>
+                <% end %>
+              </div>
+              <% if current_user.is_admin_for?(@project) && !user.invited_projects.include?(@project) %>
+                <%= button_to "Approve collaboration", {controller: "user_projects", action: "approve_collaboration", user_id: user.id, project_id: @project.id}, method: :post %>
+                <%= button_to "Deny collaboration", {controller: "user_projects", action: "deny_collaboration", user_id: user.id, project_id: @project.id}, method: :post %>
+              <% end %>
+            </div>
+            </div>
+          <% end  %>
+        </div>
+        <% end %>
+        <% unless @project.completed? || current_user.is_not_admin_for?(@project)%>
+          <div class="suggested_collaborators">
+            <% if @project.has_matching_user_skills? %>
+            <h4>These people have skills your project is looking for:</h4>
+              <% @project.skill_matching_users.each do |user| %>
+                <div class="prospective_collaborator">
+                  <p><%= user.name %><br/>
+                    Relevant skills:<br/>
+                    <% user.relevant_skills_for(@project).each do |skill| %>
+                      <div class="skill_tab"><%= skill.name %></div>
+                    <% end %>
+                  </p>
+                  <%= button_to "Invite to project", {controller: "user_projects", action: "invite", user_id: user.id, project_id: @project.id}, method: :post %>
+                </div>
+              <% end %>
+            <% else %>
+              <h3>No one seems to have the skills you need :/</h3>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+  </div>
+</div>
 </div>
 
-<div class="chat_window">
-  <ul id="chat">
-    <%= render @messages %>
-  </ul>
+<% if @project.admin == current_user %>
+  <script>
+    $(function(){
+      $('.status_bar form').hide();
+      $('.project_status').on('mouseenter', function(){
+        $('.status_bar form').show();
+      });
+      $('.project_status').on('mouseleave',function(){
+          $('.status_bar form').hide();
+      })
+    })
+  </script>
+<% end %>
 
-  <%= form_for Message.new, :remote => true do |f| %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.hidden_field :project_id, value: @project.id %>
-    <%= f.text_field :text %>
-    <%= f.submit "Send" %>
-  <% end %>
-</div>
+<% if current_user.projects.include?(@project)  %>
+  <%= render 'projects/chat_sidebar', project: @project %>
+<% else %>
+  <%= render 'projects/home_sidebar' %>
+<% end  %>
 
 <%= javascript_include_tag "http://#{ENV["FAYE_URL"]}:9292/faye.js" %>
 <script>

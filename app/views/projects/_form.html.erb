@@ -21,10 +21,10 @@
     <%= f.text_area(:description, class: ['form-control']) %>
   </div>
 
-  <div class="field">
-    <%= f.label :Skills %><br>
-    <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :name %>
-  </div>
+  <div class="field"> <div class="project_skill_ids">
+      <%= f.label :skills %><br>
+      <%= f.grouped_collection_select(:skill_ids, Category.all, :skills, :name, :id, :name, {include_blank: true},{multiple: true}) %>
+  </div></div>
 
   <div class="field">
     <%= f.hidden_field :admin_id, :value => current_user.id %>
@@ -34,3 +34,9 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<script>
+  $(function(){
+    $("#project_skill_ids").select2();
+  });
+</script>

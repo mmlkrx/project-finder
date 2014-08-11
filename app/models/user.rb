@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :notifications
   has_many :messages
 
-  def as_admin
+  def administrating_projects
     self.projects.where(admin_id: self.id)
   end
 
@@ -42,14 +42,35 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.matching_project_skills(project)
-    if project.skills.length > 0
-      project_skill_ids = project.skills.map(&:id)
-      sql_for_skill_ids = project_skill_ids.map{"skill_id = ?"}.join(" OR ")
-      self.joins(:skills).where(sql_for_skill_ids, *project_skill_ids).reject{|u|u.projects.include?(project)}.uniq.shuffle
-    else
-      return []
+  def is_admin_for?(project)
+    self.id == project.admin_id
+  end
+
+  def received_invitation?(project)
+    matching_user_project = self.user_projects.detect do |up|
+      up.project_id==project.id
     end
+    if matching_user_project 
+      matching_user_project.invitation && matching_user_project.approved == false
+    end
+  end
+
+  def is_not_admin_for?(project)
+    !is_admin_for?(project)
+  end
+
+  def rated?(project)
+    UserProject.where("user_id = ? AND project_id = ?", self.id, project.id).pluck(:rated).first
+  end
+
+  def skill_score(skill)
+    UserSkill.find_by_user_id_and_skill_id(self.id, skill.id).score
+  end
+
+  def relevant_skills_for(project)
+    project_skill_ids = project.skills.map(&:id)
+    sql_for_skill_ids = project_skill_ids.map{"user_skills.skill_id = ?"}.join(" OR ")
+    skills.where(sql_for_skill_ids, *project_skill_ids)
   end
 
 end

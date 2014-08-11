@@ -6,37 +6,59 @@ class Project < ActiveRecord::Base
 
   has_many :project_skills
   has_many :skills, through: :project_skills
+
+  has_many :user_skill_projects
+  has_many :user_skills, through: :user_skill_projects
+  
   belongs_to :admin, class_name: 'User', foreign_key: :admin_id
 
-  def prospective_collaborators
-    #users.joins("user_projects").where("users.id != ?", self.admin_id).where("user_projects.approved = 'false'")
-    prspc = users.reject{|user| user.id == self.admin_id}
-    prspc.reject! do |user|
-      proj = user.user_projects.detect{|proj| proj.project_id == self.id}
-      proj.approved
-    end
-    return prspc
+  def prospective_applicants
+    p = Project.find(self.id)
+    UserProject.find(p).people_who_are_not_invited(p).people_who_are_not_approved(p)
+                       .exclude_admin(p).collect{|up| User.find(up.user_id)}.uniq
   end
 
   def current_collaborators
-    prspc = users.reject{|user| user.id == self.admin_id} # excluding Admin from team
-    prspc.reject! do |user|
-      proj = user.user_projects.detect{|proj| proj.project_id == self.id}
-      proj.approved == false
-    end
-    return prspc
+    p = Project.find(self.id)
+    UserProject.find(p).people_who_are_approved(p).exclude_admin(p)
+               .collect{|up| User.find(up.user_id)}.uniq
   end
 
   def self.in_planning
-    where(status: 'planning')
+    where(status: 'planning').order(created_at: :desc)
   end
 
   def self.in_progress
-    where(status: 'in_progress')
+    where(status: 'in_progress').order(created_at: :desc)
+  end
+
+  def self.in_progress_or_planning
+    where("status = ? OR status = ?", 'planning', 'in_progress').order(created_at: :desc)
   end
 
   def self.completed
     where(status: 'completed')
+  end
+
+  def completed?
+    self.status == 'completed'
+  end
+
+  def not_completed?
+    !completed?
+  end
+
+  def has_matching_user_skills?
+    skill_ids = skills.collect{|skill| skill.id}
+    sql_for_skill_ids = skill_ids.map{"skill_id = ?"}.join(" OR ")
+    !UserSkill.where(sql_for_skill_ids, *skill_ids).empty?
+  end
+
+  def skill_matching_users
+    skill_ids = skills.collect{|skill| skill.id}
+    sql_for_skill_ids = skill_ids.map{"skill_id = ?"}.join(" OR ")
+    UserSkill.where(sql_for_skill_ids, *skill_ids)
+    .collect{|us| User.find(us.user_id) unless self.users.include? User.find(us.user_id)}.uniq.compact
   end
 
   # Uniq has to be called because we want a project as soon as one user skill matches one

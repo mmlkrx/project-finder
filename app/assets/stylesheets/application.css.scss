@@ -11,9 +11,14 @@
  * file per style scope.
  *
  *= require_self
+ *= require skills_for_project_page
+ *= require custom
  *= require bootstrap.min
  *= require bootstrap-theme.min
- *= require skills
+ *= require select2
+ *= require select2-bootstrap
+ *= require dashboard
+ *= require project
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"

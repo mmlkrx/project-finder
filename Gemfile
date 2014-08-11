@@ -15,6 +15,9 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'faye'
 gem "thin"
 
+gem 'mina'
+gem 'mina-faye'
+gem 'select2-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
