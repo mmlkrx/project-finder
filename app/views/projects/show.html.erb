@@ -30,10 +30,11 @@
       <h3>Team</h3>
       <ul>
       <div class="team_member">
-        <li class="team_admin"><%= image_tag avatar_url(@project.admin), class: "gravatar" %>
           <% if @project.admin == current_user %>
-            <% @project.admin.name %>
+            <li class="team_admin_name"><%= image_tag avatar_url(@project.admin), class: "gravatar" %>
+            <%= @project.admin.name %>
           <% else %>
+            <li class="team_admin_name"><%= image_tag avatar_url(@project.admin), class: "gravatar" %>
             <%= link_to @project.admin.name, user_path(@project.admin) %></li>
           <% end %>
       </div>

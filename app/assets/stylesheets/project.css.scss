@@ -125,12 +125,16 @@ h2 a{
   color:black;
 }
 
-.team_member_name{
+.team_member_name, .team_admin_name{
   font-family: "Neuton";
   font-weight:400;
   font-style:italic;
   font-size:1.2em;
   color:black;
+}
+
+.team_admin_name{
+  color:rgb(24,191,0);
 }
 
 .team_member_name a{
