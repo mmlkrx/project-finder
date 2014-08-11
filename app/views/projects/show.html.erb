@@ -56,7 +56,9 @@
                 <% end %>
                 </li>
                 <% if @project.admin == current_user && @project.not_completed? %>
-                  <%= button_to "Remove this team member", {controller: "user_projects", action: "remove_user_from_project", user_id: user.id, project_id: @project.id}, method: :post %>
+                  <div class="action_bar remove_user_button">
+                    <%= button_to "Remove this team member", {controller: "user_projects", action: "remove_user_from_project", user_id: user.id, project_id: @project.id}, method: :post %>
+                  </div>
                 <% end %>
                 <% unless user.id == current_user.id || @project.not_completed? %><!-- don't rate yourself -->
                     <div class="skills">
