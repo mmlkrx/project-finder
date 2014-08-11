@@ -1,28 +1,34 @@
 <div class="row"><div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <div class="project_card col-sm-offset-1 col-md-8">
     <h3 class="project_title"><%= @project.title %></h3> 
+    
     <% if current_user.received_invitation?(@project) %>
-    <div class="action_bar">
-    <%= button_to "You've been invited to this project. Click to accept Invitation", {controller: "user_projects", action: "accept_invitation", user_id: current_user.id, project_id: @project.id}, method: :post %>
-    </div>
+      <div class="action_bar">
+      <%= button_to "You've been invited to this project. Click to accept Invitation", {controller: "user_projects", action: "accept_invitation", user_id: current_user.id, project_id: @project.id}, method: :post %>
+      </div>
     <% elsif !current_user.projects.include?(@project) %>
-    <div class="action_bar">
-    <%= button_to "Volunteer for this project", {controller: "user_projects", action: "apply_for_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
-    </div>
+      <div class="action_bar">
+      <%= button_to "Volunteer for this project", {controller: "user_projects", action: "apply_for_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
+      </div>
+    <% elsif current_user.projects_as_collaborator.include?(@project) %>
+      <div class="action_bar">
+        <%= button_to "Leave this project", {controller: "user_projects", action: "leave_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
+      </div>
     <% end %>
     
-    <div class="status_bar">
-    <div class="project_subhead project_status"><%= @project.status %>
-      <% if @project.admin == current_user %>
-        <% if @project.status == "planning" %>
-          <%= button_to "Mark as in progress", {controller: "user_projects", action: "in_progress", user_id: current_user.id, project_id: @project.id}, method: :post %>
-        <% end %>
-        <% if @project.status == "in_progress" %>
-          <%= button_to "Mark as completed", {controller: "user_projects", action: "close_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
-        <% end %>
-      <% end %>
+      <div class="status_bar">
+        <div class="project_subhead project_status">
+          <%= @project.status %>
+          <% if @project.admin == current_user %>
+            <% if @project.status == "planning" %>
+              <%= button_to "Mark as in progress", {controller: "user_projects", action: "in_progress", user_id: current_user.id, project_id: @project.id}, method: :post %>
+            <% end %>
+            <% if @project.status == "in_progress" %>
+              <%= button_to "Mark as completed", {controller: "user_projects", action: "close_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
+            <% end %>
+          <% end %>
+        </div>
     </div>
-  </div>
 
     <div class="project_description"><p><%= @project.description %></p></div>
 
@@ -48,19 +54,22 @@
                 <% else %>
                   <%= link_to user.name, user_path(user) %>
                 <% end %>
-                <% unless user.id == current_user.id || @project.not_completed? %><!-- don't rate yourself -->
-                  <ul>
-                    <% user.skills.each do |skill| %>
-                      <li>
-                        <%= skill.name %>
-                        <% unless skill.rated?(user, @project) || current_user.is_not_admin_for?(@project) %>
-                          <%= button_to "Endorse!", {controller: "user_projects", action: "update", user_id: user.id, project_id: @project.id, skill_id: skill.id}, method: :post %>
-                        <% end %>
-                      </li>
-                    <% end %>
-                  </ul>
+                </li>
+                <% if @project.admin == current_user && @project.not_completed? %>
+                  <%= button_to "Remove this team member", {controller: "user_projects", action: "remove_user_from_project", user_id: user.id, project_id: @project.id}, method: :post %>
                 <% end %>
-              </li>
+                <% unless user.id == current_user.id || @project.not_completed? %><!-- don't rate yourself -->
+                    <div class="skills">
+                    <p>Skills:</p>
+                      <div class="skill_set">
+                        <ul>
+                          <% user.skills.each do |skill| %>
+                              <%= render partial: 'skills/skill', locals: {skill: skill, user: user, project: @project} %>
+                          <% end %>
+                        </ul>
+                      </div>
+                    </div>
+                <% end %>
             </div>
         <% end %>
       <% end %>
