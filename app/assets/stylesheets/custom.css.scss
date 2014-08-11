@@ -144,7 +144,7 @@
   height:100%;
 }
 
-.team_member li{
+.team_member li, .team_collaborator li{
   margin-left:-30px;
   margin-bottom:10px;
   list-style-type: none;
@@ -202,7 +202,7 @@
 }
 
 .dropdown{
-  margin-top:65px;
+  margin-top:15px;
   margin-right:20px;
 }
 
@@ -236,6 +236,22 @@
   font-family: "Raleway";
 }
 
+.suggested_collaborators, .want_to_join{
+  font-family: "Neuton";
+  font-weight:400;
+  font-style:italic;
+  font-size:1.2em;
+  color:black;
+}
+
+.action_bar input[type=submit]{
+background-color:rgb(236,240,241);
+display:inline-block;
+border:none;
+font-size:1.3em;
+font-family: "Neuton", serif;
+font-weight:300;
+}
 
 
 

@@ -102,15 +102,16 @@
               <h4>These people have skills that could be useful to you:</h4>
                 <% @project.skill_matching_users.each do |user| %>
                   <div class="prospective_collaborator">
-                    <ul>
-                      <li><%= user.name %></li>
-                        <% user.relevant_skills_for(@project).each do |skill| %>
-                          <ul>
-                            <div class="skill_tab"><li><%= skill.name %></li></div>
-                          </ul>
-                        <% end %>
-                      <%= button_to "Invite!", {controller: "user_projects", action: "invite", user_id: user.id, project_id: @project.id}, method: :post %>
-                    </ul>
+                    <li class="collaborator_name">
+                      <%= image_tag avatar_url(user), class: "gravatar" %>
+                      <%= user.name %>
+                    </li>
+                      <% user.relevant_skills_for(@project).each do |skill| %>
+                        <ul>
+                          <div class="skill_tab"><li><%= skill.name %></li></div>
+                        </ul>
+                      <% end %>
+                    <%= button_to "Invite!", {controller: "user_projects", action: "invite", user_id: user.id, project_id: @project.id}, method: :post, class: ['action_bar'] %>
                   </div>
                 <% end %>
               <% else %>
