@@ -25,15 +25,15 @@ class Project < ActiveRecord::Base
   end
 
   def self.in_planning
-    where(status: 'planning')
+    where(status: 'planning').order(created_at: :desc)
   end
 
   def self.in_progress
-    where(status: 'in_progress')
+    where(status: 'in_progress').order(created_at: :desc)
   end
 
   def self.in_progress_or_planning
-    where("status = ? OR status = ?", 'planning', 'in_progress')
+    where("status = ? OR status = ?", 'planning', 'in_progress').order(created_at: :desc)
   end
 
   def self.completed
