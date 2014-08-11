@@ -112,15 +112,15 @@ h2 a{
   margin-left:14px;
 }
 
-.team_admin a{
+.team_admin_name a{
   color:rgb(24,191,0);
   font-family: "Neuton";
   font-weight:400;
   font-style:italic;
-  font-size:1.3em;
+  font-size:1.2em;
 }
 
-.team_admin a:hover{
+.team_admin_name a:hover{
   text-decoration:none;
   color:black;
 }
@@ -265,4 +265,11 @@ h2 a{
   -webkit-box-shadow: 0px 2px 0px 0px rgba(214,187,0,0.94);
   -moz-box-shadow: 0px 2px 0px 0px rgba(214,187,0,0.94);
   box-shadow: 0px 2px 0px 0px rgba(214,187,0,0.94);
+}
+
+.endorse_button{
+  color:rgb(24,191,0);
+  background:none;
+  border:none;
+  display:inline;
 }

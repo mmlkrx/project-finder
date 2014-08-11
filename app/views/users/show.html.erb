@@ -12,8 +12,11 @@
     <h2><%= @user.name %></h2>
     <div class="skills">
     <p>My skills:</p>
-    <%= render 'skills/index' %>
-    </ul>
+    <div class="skill_set">
+      <ul>
+        <%= render partial: 'skills/skill', collection: @user.skills, locals: {user: @user, endorsable:false} %>
+      </ul>
+    </div>
   </div>
 </div>
 

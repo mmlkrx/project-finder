@@ -10,6 +10,7 @@
 - ~~when sending out an invite to people, they'll immediately show up as wanting to join~~ (done)
 - ~~prospective collaborators who have more than one relevant skill appear more than once~~ (done)
 
+-After clicking links, they have an underline
 
 ##Features:
 
