@@ -16,4 +16,12 @@ class Skill < ActiveRecord::Base
     project.user_skills.where("user_id = ? AND skill_id = ?", user.id, self.id).pluck(:id).first
   end
 
+  def endorsable?(current_user, user, project)
+    #Test this thoroughly
+    project != nil &&
+    project.completed? &&
+    !rated?(user, project) &&
+    !current_user.is_not_admin_for?(project)
+  end
+
 end

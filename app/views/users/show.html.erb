@@ -14,7 +14,7 @@
     <p>My skills:</p>
     <div class="skill_set">
       <ul>
-        <%= render partial: 'skills/skill', collection: @user.skills, locals: {user: @user, endorsable:false} %>
+        <%= render partial: 'skills/skill', collection: @user.skills, locals: {user: @user, project: nil} %>
       </ul>
     </div>
   </div>

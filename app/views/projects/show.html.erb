@@ -48,17 +48,19 @@
                 <% else %>
                   <%= link_to user.name, user_path(user) %>
                 <% end %>
+                </li>
                 <% unless user.id == current_user.id || @project.not_completed? %><!-- don't rate yourself -->
                     <div class="skills">
                     <p>Skills:</p>
                       <div class="skill_set">
                         <ul>
                           <% user.skills.each do |skill| %>
-                              <%= render partial: 'skills/skill', locals: {skill: skill, user: user, project: @project, endorsable: true} %>
+                              <%= render partial: 'skills/skill', locals: {skill: skill, user: user, project: @project} %>
                           <% end %>
                         </ul>
+                      </div>
+                    </div>
                 <% end %>
-              </li>
             </div>
         <% end %>
       <% end %>
