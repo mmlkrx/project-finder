@@ -12,6 +12,12 @@
 
 ##Features:
 
+- front end
+  - style the recommended people
+  - style the people
+  - endorse button should have upvote/endorse icon
+  - style all buttons to look nice
+
 - site flow
   - add side bar to projects#new
   - add column bio to user
