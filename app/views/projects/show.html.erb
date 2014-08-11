@@ -1,17 +1,18 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="row"><div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <div class="project_card col-sm-offset-1 col-md-8">
-    <h2 class="project_title"><%= @project.title %></h2> 
-
+    <h3 class="project_title"><%= @project.title %></h3> 
+    <% if current_user.received_invitation?(@project) %>
+    <div class="action_bar">
+    <%= button_to "You've been invited to this project. Click to accept Invitation", {controller: "user_projects", action: "accept_invitation", user_id: current_user.id, project_id: @project.id}, method: :post %>
+    </div>
+    <% elsif !current_user.projects.include?(@project) %>
+    <div class="action_bar">
+    <%= button_to "Volunteer for this project", {controller: "user_projects", action: "apply_for_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
+    </div>
+    <% end %>
+    
+    <div class="status_bar">
     <div class="project_subhead project_status"><%= @project.status %>
-      <% if current_user.received_invitation?(@project) %>
-        <div class="status_bar">
-        <%= button_to "You've been invited to this project. Click to accept Invitation", {controller: "user_projects", action: "accept_invitation", user_id: current_user.id, project_id: @project.id}, method: :post %>
-      <% elsif !current_user.projects.include?(@project) %>
-        <div class="status_bar">
-        <%= button_to "Volunteer for this project", {controller: "user_projects", action: "apply_for_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
-        </div>
-      <% end %>
-      <div class="status_bar">
       <% if @project.admin == current_user %>
         <% if @project.status == "planning" %>
           <%= button_to "Mark as in progress", {controller: "user_projects", action: "in_progress", user_id: current_user.id, project_id: @project.id}, method: :post %>
@@ -21,12 +22,12 @@
         <% end %>
       <% end %>
     </div>
-    </div>
+  </div>
 
     <div class="project_description"><p><%= @project.description %></p></div>
 
     <div class="project_team">
-      <h4>Team</h4>
+      <h3>Team</h3>
       <ul>
       <div class="team_member">
         <li><%= image_tag avatar_url(@project.admin), class: "gravatar" %><%= @project.admin.name %></li>
@@ -69,7 +70,7 @@
                   <div class="skill"><%= skill.name %></div>
                 <% end %>
               </div>
-              <% if current_user.is_admin_for?(@project) %>
+              <% if current_user.is_admin_for?(@project) && !user.invited_projects.include?(@project) %>
                 <%= button_to "Approve collaboration", {controller: "user_projects", action: "approve_collaboration", user_id: user.id, project_id: @project.id}, method: :post %>
                 <%= button_to "Deny collaboration", {controller: "user_projects", action: "deny_collaboration", user_id: user.id, project_id: @project.id}, method: :post %>
               <% end %>
@@ -97,6 +98,8 @@
       <% end %>
   </div>
 </div>
+</div>
+
 <% if @project.admin == current_user %>
   <script>
     $(function(){
@@ -111,7 +114,9 @@
   </script>
 <% end %>
 
+<% if current_user.projects.include?(@project)  %>
 <%= render 'projects/chat_sidebar', project: @project %>
+<% end  %>
 
 <%= javascript_include_tag "http://localhost:9292/faye/client.js" %>
 <script>

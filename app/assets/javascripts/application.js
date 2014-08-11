@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require global_ajax
 //= require bootstrap.min
 //= require select2

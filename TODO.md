@@ -6,6 +6,7 @@
 *Fixed
 - forbid users from applying to projects that they've already received an invitation for
 - chat only appears if you're part of the team
+*This is fixed but we need to put some other kind of sidebar on the page if you're not part of the team
 
 ##Features:
 
