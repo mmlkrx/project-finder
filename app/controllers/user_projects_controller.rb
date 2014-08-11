@@ -10,12 +10,21 @@ class UserProjectsController < ApplicationController
 
   def leave_project
     @project = Project.find(params[:project_id])
-    binding.pry
     user_project = UserProject.find_by(user_id: params[:user_id], project_id: params[:project_id])
     flash[:notice] = "You have left #{@project.title}"
     user_project.destroy
     @project.admin.notifications.build(content: "#{current_user.name} has left #{@project.title}").save
     redirect_to current_user
+  end
+
+  def remove_user_from_project
+    @project = Project.find(params[:project_id])
+    @user = User.find(params[:user_id])
+    user_project = UserProject.find_by(user_id: params[:user_id], project_id: params[:project_id])
+    flash[:notice] = "You have removed #{@user.name} from #{@project.title}"
+    user_project.destroy
+    @user.notifications.build(content: "#{@project.admin.name} has removed you from #{@project.title}").save
+    redirect_to @project
   end
 
   def approve_collaboration
