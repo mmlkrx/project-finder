@@ -5,7 +5,7 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h2>Welcome, <%= current_user.name %>!
   <% if @projects.empty? %>
-    We don't currently have any projects to recommend to you. Why not <%= link_to "create your own", new_project_path %>?
+    We don't currently have any projects to recommend to you. Why not <%= link_to "create your own", new_project_path, class: "new_project_link" %>?
     </h2>
     <% else %>
     Here are some projects you might be interested in</h2>

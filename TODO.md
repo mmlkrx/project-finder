@@ -2,11 +2,13 @@
 
 - forbid users from applying to projects that they've already received an invitation for
 - chat only appears if you're part of the team
-- ~~accepting invitation upon receiving flash notice~~ (done)
+*This is fixed but we need to put some other kind of sidebar on the page if you're not part of the team
 - new notification system
+- ~~accepting invitation upon receiving flash notice~~ (done)
 - ~~project completed page shouldn't show you people that you can invite~~ (done)
 - ~~when sending out an invite to people, they'll immediately show up as wanting to join~~ (done)
 - ~~prospective collaborators who have more than one relevant skill appear more than once~~ (done)
+
 
 ##Features:
 

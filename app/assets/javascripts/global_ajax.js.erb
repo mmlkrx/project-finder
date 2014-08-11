@@ -1,0 +1,19 @@
+$(function(){
+  $('.edit_account_link').on('click', function(e){
+    e.preventDefault();
+    $.get(
+      '<%= Rails.application.routes.url_helpers.edit_user_registration_path %>', function(data){
+        $('.main').html(data);
+      }
+    );
+  });
+
+  $('.new_project_link').on('click', function(e){
+    e.preventDefault();
+    $.get(
+      '<%= Rails.application.routes.url_helpers.new_project_path %>', function(data){
+        $('.main').html(data);
+      })
+  });
+
+})

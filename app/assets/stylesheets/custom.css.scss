@@ -3,6 +3,13 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:800italic);
 @import url(http://fonts.googleapis.com/css?family=Raleway:100);
 
+@media all{
+.navbar, .navbar-header{
+  margin:0;
+  padding-top:5px;
+  margin-top:0;
+}
+}
 
 .about_us h2, .sign_in h2, .sign_up h2 {
   font-family: "Yellowtail";
@@ -127,11 +134,76 @@ margin-right:12px;
   border-radius: 50%;
 }
 
+.sidebar{
+  height:100%;
+}
+
+.nav-sidebar{
+  height:80%;
+}
+
+.chat_window{
+  height: 80%;
+}
+
 .chat_box{
-  min-height:550px;
+  width:214px;
+  height:80%;
+}
+
+#message_form{
+  width:100%;
+  clear:both;
+  position:fixed;
+  bottom:0;
+}
+
+#message_form input[type=submit]{
+  display:block;
 }
 
 .project_team{
   background-color:#ecf0f1;
   padding:8px;
+  border-radius:5px;
+  border: 1px solid rgb(24, 191, 0);
+}
+
+.navbar, .navbar-header{
+  margin-left:25px;
+  height:115px;
+}
+
+.navbar-header a, .navbar-brand{
+  background:url('teamuplogo.png');
+  height:115px;
+  width:260px;
+}
+
+.dropdown{
+  margin-top:65px;
+  margin-right:20px;
+}
+
+.sidebar{
+  margin-top:90px;
+  padding-top:0;
+}
+
+.row{
+  margin-top:50px;
+}
+
+.navbar{
+  border:none;
+}
+
+.navbar-fixed-top{
+  border:none;
+}
+
+.navbar-default{
+  border:none;
+  box-shadow:none;
+  -webkit-box-shadow:none;
 }
