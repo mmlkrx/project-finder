@@ -8,6 +8,16 @@ class UserProjectsController < ApplicationController
     redirect_to @project
   end
 
+  def leave_project
+    @project = Project.find(params[:project_id])
+    binding.pry
+    user_project = UserProject.find_by(user_id: params[:user_id], project_id: params[:project_id])
+    flash[:notice] = "You have left #{@project.title}"
+    user_project.destroy
+    @project.admin.notifications.build(content: "#{current_user.name} has left #{@project.title}").save
+    redirect_to current_user
+  end
+
   def approve_collaboration
     @user_project = UserProject.find_by(user_id: params[:user_id], project_id: params[:project_id])
     @user_project.approved = true

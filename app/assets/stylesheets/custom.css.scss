@@ -5,26 +5,25 @@
 @import url(http://fonts.googleapis.com/css?family=Neuton:300,400italic);
 
 @media all{
-.navbar, .navbar-header{
-  margin:0;
-  padding-top:5px;
-  margin-top:0;
-}
-.alert{
-  margin-top:90px;
-}
-.alert-success{
-  background-image:none;
-  color: rgb(24, 191, 0);
-  border: 1px solid solid rgb(24, 191, 0);
-  font-family:'Raleway';
-  font-weight:100;
-}
+  .navbar, .navbar-header{
+    margin:0;
+    padding-top:5px;
+    margin-top:0;
+  }
+  .alert{
+    margin-top:90px;
+  }
+  .alert-success{
+    background-image:none;
+    color: rgb(24, 191, 0);
+    border: 1px solid solid rgb(24, 191, 0);
+    font-family:'Raleway';
+    font-weight:100;
+  }
 
-.about_us, .sign_in{
-  margin-top:100px;
-}
-
+  .about_us, .sign_in{
+    margin-top:100px;
+  }
 }
 
 .about_us h2, .sign_in h2, .sign_up h2 {

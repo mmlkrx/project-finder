@@ -8,7 +8,6 @@ class Skill < ActiveRecord::Base
   has_many :projects, through: :project_skills
 
   def rated?(user, project)
-    # UserSkill.where("user_id = ? AND skill_id = ?", user.id, self.id).pluck(:rated).first
     UserSkillProject.where("project_id = ? AND user_skill_id = ?", project.id, self.find_user_skill_id_by_user_id_and_skill_id(user, project)).pluck(:endorsed).first
   end
 
@@ -17,7 +16,6 @@ class Skill < ActiveRecord::Base
   end
 
   def endorsable?(current_user, user, project)
-    #Test this thoroughly
     project != nil &&
     project.completed? &&
     !rated?(user, project) &&

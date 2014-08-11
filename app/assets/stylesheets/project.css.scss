@@ -170,6 +170,7 @@ h2 a{
   padding-top:8px;
   padding-bottom:20px;
   float:left;
+  margin-left:10px;
 }
 
 .skill_name{
@@ -271,5 +272,6 @@ h2 a{
   color:rgb(24,191,0);
   background:none;
   border:none;
-  display:inline;
+  display:inline-block;
+  float:left;
 }
