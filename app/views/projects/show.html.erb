@@ -30,13 +30,23 @@
       <h3>Team</h3>
       <ul>
       <div class="team_member">
-        <li><%= image_tag avatar_url(@project.admin), class: "gravatar" %><%= @project.admin.name %></li>
+        <li class="team_admin"><%= image_tag avatar_url(@project.admin), class: "gravatar" %>
+          <% if @project.admin == current_user %>
+            <% @project.admin.name %>
+          <% else %>
+            <%= link_to @project.admin.name, user_path(@project.admin) %></li>
+          <% end %>
       </div>
       <% if @project.current_collaborators %>
         <% @project.current_collaborators.each do |user| %>
             <div class="team_member">
-              <li>
-                <%= image_tag avatar_url(user), class: "gravatar" %><%= user.name %>
+              <li class="team_member_name">
+                <%= image_tag avatar_url(user), class: "gravatar" %>
+                <% if user == current_user %>
+                  <%= user.name %>
+                <% else %>
+                  <%= link_to user.name, user_path(user) %>
+                <% end %>
                 <% unless user.id == current_user.id || @project.not_completed? %><!-- don't rate yourself -->
                   <ul>
                     <% user.skills.each do |skill| %>

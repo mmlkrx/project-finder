@@ -1,6 +1,10 @@
 <div class="container-fluid">
 <div class="row">
-<%= render 'sidebar' %>
+<% if current_user == @user %>
+  <%= render 'sidebar' %>
+<% else %>
+  <%= render 'projects/home_sidebar' %>
+<% end %>
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
@@ -13,6 +17,7 @@
   </div>
 </div>
 
+<% if @user == current_user %>
 <div id="invited_projects">
 <% if @user.invited_projects.empty? %>
   <h2>You have not been invited to work on any projects</h2>
@@ -68,12 +73,13 @@
     <% end %>
 <% end %>
 </div>
+<% end %>
 
 <div id="completed_projects">
-<% if @user.projects.completed.empty? %>
+<% if @user.projects.completed.empty? && current_user == @user %>
   <h2>You have no finished projects</h2>
 <% else %>
-  <h2>Projects I've completed</h2>
+  <h2>Finished projects:</h2>
     <% @user.projects.completed.each do |project| %>
       <div>
         <h4><%= link_to project.title, project, class: "project_title" %></h4>
@@ -83,6 +89,7 @@
 <% end %>
 </div>
 
+<% if @user == current_user %>
 <div id="new_project_form">
   <h2>New Project</h2>
   <%= render 'projects/form' %>
@@ -92,6 +99,7 @@
   <h2>Edit User</h2>
   <%= render 'devise/registrations/edit_form' %>
 </div>
+<% end %>
 
 </div>
 </div>

@@ -104,6 +104,49 @@ h2 a{
  padding:0 25px 25px 20px;
 }
 
+.project_team h3{
+  font-family: "Neuton";
+  font-weight:300;
+  font-size:1.4em;
+  font-color:black;
+  margin-left:14px;
+}
+
+.team_admin a{
+  color:rgb(24,191,0);
+  font-family: "Neuton";
+  font-weight:400;
+  font-style:italic;
+  font-size:1.3em;
+}
+
+.team_admin a:hover{
+  text-decoration:none;
+  color:black;
+}
+
+.team_member_name{
+  font-family: "Neuton";
+  font-weight:400;
+  font-style:italic;
+  font-size:1.2em;
+  color:black;
+}
+
+.team_member_name a{
+  color:black;
+}
+
+.team_member_name:hover{
+  font-decoration:none;
+  color:black;
+}
+
+.team_admin a:hover{
+  text-decoration:none;
+  color:black;
+}
+
 .skills li{
   list-style-type:none;
   display:inline-block;
