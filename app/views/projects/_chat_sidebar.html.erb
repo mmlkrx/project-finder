@@ -11,8 +11,8 @@
     <%= form_for Message.new, :remote => true do |f| %>
       <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.hidden_field :project_id, value: project.id %>
-      <%= f.text_area :text %>
-      <%= f.submit "Send" %>
+      <%= f.text_area :text, class: ["form-control"] %>
+      <%= f.submit "Send chat message", class: ["btn btn-success"]%>
     <% end %>
   </div>
 </div>

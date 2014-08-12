@@ -176,10 +176,19 @@
   clear:both;
   position:fixed;
   bottom:0;
+  margin-bottom: 10px;
 }
 
 #message_form input[type=submit]{
   display:block;
+  margin-left: 5px;
+  margin-top: 4px;
+  width: 228px;
+}
+
+#message_text {
+  width:228px;
+  margin-left:5px;
 }
 
 .project_team{
@@ -253,22 +262,6 @@ font-family: "Neuton", serif;
 font-weight:300;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .skill_name form{
   display:inline-block;
 }
@@ -277,3 +270,17 @@ font-weight:300;
   color:rgb(24, 191, 0); 
   border-left:none;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
