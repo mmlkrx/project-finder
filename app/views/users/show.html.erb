@@ -1,24 +1,16 @@
-<div class="container-fluid">
-<div class="row">
-<% if current_user == @user %>
-  <%= render 'sidebar' %>
-<% else %>
-  <%= render 'projects/home_sidebar' %>
-<% end %>
-
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-<div id="account_info">
-    <h2><%= @user.name %></h2>
-    <div class="skills">
-    <p>My skills:</p>
-    <div class="skill_set">
-      <ul>
-        <%= render partial: 'skills/skill', collection: @user.skills, locals: {user: @user, project: nil} %>
-      </ul>
+  <div id="account_info">
+      <h2><%= @user.name %></h2>
+      <div class="skills">
+      <p>My skills:</p>
+      <div class="skill_set">
+        <ul>
+          <%= render partial: 'skills/skill', collection: @user.skills, locals: {user: @user, project: nil} %>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 
 <% if @user == current_user %>
 <div id="invited_projects">
@@ -92,89 +84,4 @@
 <% end %>
 </div>
 
-<% if @user == current_user %>
-<div id="new_project_form">
-  <h2>New Project</h2>
-  <%= render 'projects/form' %>
 </div>
-
-<div id="edit_account_form">
-  <h2>Edit User</h2>
-  <%= render 'devise/registrations/edit_form' %>
-</div>
-<% end %>
-
-</div>
-</div>
-</div>
-<script>
-  $(function(){
-    function refreshPage(){
-      $('#account_info').hide();
-      $('#new_project_form').hide();
-      $('#edit_account_form').hide();
-      $('#administrated_projects').hide();
-      $('#invited_projects').hide();
-      $('#completed_projects').hide();
-      $('#solicited_projects').hide();
-      $('#projects_as_collaborator').hide();
-    };
-    refreshPage();
-    $('#account_info').show();
-
-    $('#home_page').on('click', function(e){
-      e.preventDefault();
-      refreshPage();
-      $('#account_info').show();
-    });
-
-    $('#new_project_link').on('click', function(e){
-      e.preventDefault();
-      refreshPage();
-      $('#new_project_form').show();
-    });
-
-    $('#administrated_projects_link').on('click', function(e){
-      e.preventDefault();
-      refreshPage();
-      $("#administrated_projects").show();
-    });
-
-    $('#invited_projects_link').on('click', function(e){
-    e.preventDefault();
-    refreshPage();
-    $("#invited_projects").show();
-    });
-
-    $('#projects_as_collaborator_link').on('click', function(e){
-      e.preventDefault();
-      refreshPage();
-      $("#projects_as_collaborator").show();
-    });
-
-    $('#solicited_projects_link').on('click', function(e){
-      e.preventDefault();
-      refreshPage();
-      $("#solicited_projects").show();
-    });
-
-    $('#invited_projects_link').on('click', function(e){
-      e.preventDefault();
-      refreshPage();
-      $("#invited_projects").show();
-    });
-
-    $('#completed_projects_link').on('click', function(e){
-      e.preventDefault();
-      refreshPage();
-      $("#completed_projects").show();
-    });
-
-    $('#edit_account_link').on('click', function(e){
-      e.preventDefault();
-      refreshPage();
-      $("#edit_account_form").show();
-    });
-
-  });
-</script>

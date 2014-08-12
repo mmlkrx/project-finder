@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   resources :messages, only: :create
   resources :projects, only: [:show, :edit, :create, :new]
+  get '/about' => 'application#about', as: "about"
+
+  get '/invitations' => 'projects#invitations', as: "invitations"
 
   post 'approve_collaboration' => 'user_projects#approve_collaboration', as: "approve_collaboration"  
   post 'deny_collaboration' => 'user_projects#deny_collaboration', as: "deny_collaboration"  
@@ -16,6 +19,5 @@ Rails.application.routes.draw do
   post 'close_project' => 'user_projects#close_project', as: 'close_project'
   post 'in_progress' => 'user_projects#in_progress', as: 'in_progress'
   post 'update' => 'user_projects#update', as: 'update'
-  get '/about' => 'application#about', as: "about"
 
 end

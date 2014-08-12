@@ -1,3 +1,17 @@
+Get sidebar line to end at the bottom of username section
+What else goes in the sidebar when you first log in?
+User signup page needs to be adjusted to account for header
+
+
+Putting everything in partials (conversation about structure later)
+
+Additional features/stretch goals
+-Endorsing based on features
+-Being able to see all users who have a certain skill, ordered by skill level (by clicking on a skill button)!
+-Being able to select skills to delete with a dropdown and select skills to add using select2
+-Would like to load page partials using AJAX
+
+-------------------
 ##Bugs:
 
 - forbid users from applying to projects that they've already received an invitation for

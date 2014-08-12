@@ -16,7 +16,6 @@ gem 'faye'
 gem "thin"
 
 gem 'mina'
-gem 'mina-faye'
 gem 'select2-rails'
 
 # Use jquery as the JavaScript library

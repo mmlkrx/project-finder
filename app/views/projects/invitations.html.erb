@@ -1,0 +1,14 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <div id="invited_projects">
+    <% if @projects.empty? %>
+      <h2>You have not been invited to work on any projects</h2>
+    <% else %>
+      <h2>You've been invited to the following projects</h2>
+      <% @user.invited_projects.each do |project| %>
+        <%= render 'project' %>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>
