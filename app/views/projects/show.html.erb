@@ -79,7 +79,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row subsequent_people">
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <div class="project_card col-sm-offset-1 col-md-8">
       <div class="prospective_applicants">
@@ -113,7 +113,7 @@
                     <li class="collaborator_name">
                       <%= image_tag avatar_url(user), class: "gravatar" %>
                       <%= user.name %>
-                      <%= button_to "Invite!", {controller: "user_projects", action: "invite", user_id: user.id, project_id: @project.id}, method: :post, class: ['action_bar'] %>
+                      <%= button_to "invite", {controller: "user_projects", action: "invite", user_id: user.id, project_id: @project.id}, method: :post, class: ['action_bar'] %>
                     </li>
                       <% user.relevant_skills_for(@project).each do |skill| %>
                         <ul>
