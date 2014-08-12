@@ -263,7 +263,6 @@
 .suggested_collaborators, .want_to_join{
   font-family: "Neuton";
   font-weight:400;
-  font-style:italic;
   font-size:1.2em;
   color:black;
 }
@@ -288,6 +287,10 @@ font-weight:300;
 
 ul, li {
 list-style-type: none;
+}
+
+.button_to {
+  float:right;
 }
 
 
