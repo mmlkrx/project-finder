@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/about' => 'application#about', as: "about"
 
   get '/invitations' => 'projects#invitations', as: "invitations"
+  get '/my_projects' => 'projects#my_projects', as: "my_projects"
+  get '/my_teams' => 'projects#my_teams', as: "my_teams"
 
   post 'approve_collaboration' => 'user_projects#approve_collaboration', as: "approve_collaboration"  
   post 'deny_collaboration' => 'user_projects#deny_collaboration', as: "deny_collaboration"  

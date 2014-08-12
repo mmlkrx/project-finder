@@ -13,47 +13,6 @@
   </div>
 
 <% if @user == current_user %>
-<div id="invited_projects">
-<% if @user.invited_projects.empty? %>
-  <h2>You have not been invited to work on any projects</h2>
-<% else %>
-  <h2>You've been invited to the following projects</h2>
-    <% @user.invited_projects.each do |project| %>
-      <div>
-          <h4><%= link_to project.title, project, class: "project_title" %></h4>
-          <p><%= project.description %></p>
-      </div>
-    <% end %>
-<% end %>
-</div>
-
-<div id="administrated_projects">
-<% if @user.administrating_projects.empty?  %>
-  <h2>You have not started any projects</h2>
-<% else %>
-  <h2>Projects I'm administrating</h2>
-    <% @user.administrating_projects.in_progress_or_planning.each do |project| %>
-        <div>
-          <h4><%= link_to project.title, project, class: "project_title" %></h4>
-          <p><%= project.description %></p>
-        </div>
-    <% end %>
-<% end %>
-</div>
-
-<div id="projects_as_collaborator">
-<% if @user.projects_as_collaborator.empty? %>
-  <h2>You are not currently collaborating on any projects</h2>
-  <% else %>
-  <h2>Projects I'm collaborating on</h2>
-    <% @user.projects_as_collaborator.each do |project| %>
-      <div>
-        <h4><%= link_to project.title, project, class: "project_title" %></h4>
-        <p><%= project.description %></p>
-      </div>
-    <% end %>
-<% end %>
-</div>
 
 <div id="solicited_projects">
 <% if @user.solicited_projects.empty? %>

@@ -37,8 +37,27 @@ class ProjectsController < ApplicationController
   end
 
   def invitations
-    @projects = current_user.invited_projects
+    @user = current_user
+    @projects = @user.invited_projects
     render 'invitations'
+  end
+
+  def my_projects
+    @user = current_user
+    @projects = @user.administrating_projects.in_progress_or_planning
+    render 'my_projects'
+  end
+
+  def my_teams
+    @user = current_user
+    @projects = @user.projects_as_collaborator
+    render 'my_teams'
+  end
+
+  def solicited_projects
+    @user = current_user
+    @projects = @user.solicited_projects
+    render 'solicited_projects'
   end
 
   private
