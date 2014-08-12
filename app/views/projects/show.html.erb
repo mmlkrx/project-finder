@@ -10,6 +10,10 @@
       <div class="action_bar">
       <%= button_to "Volunteer for this project", {controller: "user_projects", action: "apply_for_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
       </div>
+      <% elsif current_user.projects_as_collaborator.include?(@project) %>
+      <div class="action_bar">
+        <%= button_to "Leave this project", {controller: "user_projects", action: "leave_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
+      </div>
       <% end %>
       
       <div class="status_bar">
@@ -49,15 +53,15 @@
                     <% else %>
                       <%= link_to user.name, user_path(user) %>
                     <% end %>
+                    <% if @project.admin == current_user && @project.not_completed? %>
+                      <div class="action_bar remove_user_button">
+                        <%= button_to "Remove this team member", {controller: "user_projects", action: "remove_user_from_project", user_id: user.id, project_id: @project.id}, method: :post %>
+                      </div>
+                    <% end %>
                     <% unless user.id == current_user.id || @project.not_completed? %><!-- don't rate yourself -->
                       <ul>
                         <% user.skills.each do |skill| %>
-                          <li>
-                            <%= skill.name %>
-                            <% unless skill.rated?(user, @project) || current_user.is_not_admin_for?(@project) %>
-                              <%= button_to "Endorse!", {controller: "user_projects", action: "update", user_id: user.id, project_id: @project.id, skill_id: skill.id}, method: :post %>
-                            <% end %>
-                          </li>
+                          <%= render partial: 'skills/skill', locals: {skill: skill, user: user, project: @project} %>
                         <% end %>
                       </ul>
                     <% end %>
@@ -145,10 +149,10 @@
   <%= render 'projects/home_sidebar' %>
 <% end  %>
 
-<%= javascript_include_tag "http://localhost:9292/faye/client.js" %>
+<%= javascript_include_tag "http://#{ENV["FAYE_URL"]}:9292/faye.js" %>
 <script>
   $(function(){
-    var faye = new Faye.Client('http://localhost:9292/faye')
+    var faye = new Faye.Client("http://<%= ENV['FAYE_URL'] %>:9292/faye")
     faye.subscribe('/messages/'+<%= @project.id %>,function(data){
       eval(data)
     });

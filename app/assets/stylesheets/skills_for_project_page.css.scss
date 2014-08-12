@@ -1,0 +1,73 @@
+.skills {
+  padding-top:10px;
+  background-color:#ecf0f1;
+  margin-top: 20px;
+  min-height:90px;
+  border:1px solid rgb(24,191,0);
+  border-radius:5px;
+}
+
+.skill_set {
+  margin:auto;
+  width:500px;
+}
+
+.skills p {
+  padding-left: 18px;
+  font-family: "Neuton", serif;
+  font-weight:300;
+}
+
+.skills li{
+  list-style-type:none;
+  display:inline-block;
+}
+
+.project_page_skill_box{
+  -webkit-box-shadow: 0px 2px 0px 0px black;
+  -moz-box-shadow: 0px 2px 0px 0px black;
+  box-shadow: 0px 2px 0px 0px black;
+}
+
+.team_member .skill_set li{
+  margin-left:1px;
+}
+
+ .skills li .skill_box{
+  width:130px;
+  height:36px;
+  line-height:12px;
+  padding-left:5px;
+  padding-top:8px;
+  padding-bottom:20px;
+  float:left;
+}
+
+.skill_name{
+  display:inline-block;
+  font-family: "Raleway", sans-serif;
+  font-weight:100;
+  font-size:1.2em;
+  height:10px;
+  margin-top:10px;
+}
+
+.skill_box icon:before{
+  font-family: "FontMfizz";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+.team_member .skill_box .icon{
+  padding-top:8px;
+  margin-right:4px;
+  display:inline-block;
+  font-size:2em;
+  font-family:"FontMfizz";
+}

@@ -36,6 +36,11 @@ class ProjectsController < ApplicationController
 
   end
 
+  def invitations
+    @projects = current_user.invited_projects
+    render 'invitations'
+  end
+
   private
 
   def project_params
