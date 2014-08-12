@@ -24,9 +24,11 @@
     <div class="field">
 
       <%= f.label :Skills, "What are your skills?" %><br>
-      <%= f.grouped_collection_select(:skill_ids, Category.all, :skills, :name, :id, :name, {include_blank: true},{multiple: true}) %>
-
+      <%= f.grouped_collection_select(:skill_ids, Category.all, :skills, :name, :id, :name, {include_blank: true},{multiple: true}) %><br/>
     </div>
+      <div class="field"><%= f.label :bio, "Bio" %>
+      <%= f.text_area :bio, autocomplete: "off" %></div>
+
     </div>
 
     <div class="sign_up_button"><%= f.submit "Sign up", class: "btn btn-primary" %></div>

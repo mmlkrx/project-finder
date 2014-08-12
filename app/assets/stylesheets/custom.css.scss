@@ -24,6 +24,10 @@
   .about_us, .sign_in{
     margin-top:100px;
   }
+
+  .sign_up{
+  margin-top:50px;
+  }
 }
 
 .about_us h2, .sign_in h2, .sign_up h2 {
@@ -105,9 +109,9 @@
 }
 
 .skills_column label{
-  font-family: "Yellowtail";
+  font-family: "Neuton";
   font-weight:400;
-  font-size:300%;
+  font-size:200%;
   margin-top:20px;
   line-height:1.1;
 }
@@ -199,8 +203,19 @@
 }
 
 .navbar, .navbar-header{
-  margin-left:25px;
+  padding-left:15px;
   height:115px;
+  margin-bottom:0;
+}
+
+.navbar {
+  margin-bottom:0 !important;
+  height:141px !important;
+  border-bottom: 1px solid black !important;
+}
+
+.sidebar {
+  border-right:1px solid black;
 }
 
 .navbar-header a, .navbar-brand{
@@ -220,7 +235,11 @@
 }
 
 .row{
-  margin-top:50px;
+  margin-top:75px;
+}
+
+.row.subsequent_people {
+  margin-top:0;
 }
 
 .row.subsequent_people {

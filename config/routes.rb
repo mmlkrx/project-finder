@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   resources :projects, only: [:show, :edit, :create, :new]
   get '/about' => 'application#about', as: "about"
 
-  get '/invitations' => 'projects#invitations', as: "invitations"
+  get '/invitations' => 'projects#invitations', as: 'invitations'
+  get '/my_projects' => 'projects#my_projects', as: 'my_projects'
+  get '/my_teams' => 'projects#my_teams', as: 'my_teams'
+  get '/pending_applications' => 'projects#pending_applications', as: 'pending_applications'
+  get '/finished_projects' => 'projects#finished_projects', as: 'finished_projects'
 
   post 'approve_collaboration' => 'user_projects#approve_collaboration', as: "approve_collaboration"  
   post 'deny_collaboration' => 'user_projects#deny_collaboration', as: "deny_collaboration"  
