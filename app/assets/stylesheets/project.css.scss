@@ -2,6 +2,34 @@
 @import url(http://fonts.googleapis.com/css?family=Neuton:300,400italic);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:800italic);
 
+
+tr{
+  height:5px;
+}
+
+div.skill_box{
+  color:white;
+  background:#99EB99;
+  border-right:3px solid rgb(20, 172, 0);
+  border-left:1px solid rgb(20, 172, 0);
+  border-top:1px solid rgb(20, 172, 0);
+}
+
+div.Ruby_box{
+  border-right:3px solid rgb(132,10,0);
+  border-left:1px solid rgb(132,10,0);
+  border-top:1px solid rgb(132,10,0);
+}
+
+td.icon{
+  margin-left:8px;
+  margin-bottom:2px;
+}
+
+td.skill_name{
+  margin-right:8px;
+}
+
 h2 {
   font-family: "Neuton";
   font-weight:300;
@@ -77,11 +105,8 @@ h2 a{
 
 .skills {
   padding-top:10px;
-  background-color:#ecf0f1;
   margin-top: 20px;
-  min-height:90px;
-  border:1px solid rgb(24,191,0);
-  border-radius:5px;
+  padding-bottom:20px;
 }
 
 .skill_set {
@@ -156,11 +181,6 @@ h2 a{
   display:inline-block;
 }
 
-.skill_box{
-  -webkit-box-shadow: 0px 2px 0px 0px black;
-  -moz-box-shadow: 0px 2px 0px 0px black;
-  box-shadow: 0px 2px 0px 0px black;
-}
 
 .skills li .skill_box{
   width:130px;
@@ -177,7 +197,7 @@ h2 a{
   display:inline-block;
   font-family: "Raleway", sans-serif;
   font-weight:100;
-  font-size:1.2em;
+  font-size:.5em;
   height:10px;
   margin-top:10px;
 }
@@ -191,10 +211,6 @@ h2 a{
   font-style: normal;
 }
 
-.skill_box{
-  color:white;
-  background:black;
-}
 
 .Node_box {
   color:rgb(48, 48, 48);
@@ -248,12 +264,9 @@ h2 a{
   content: "\f120";
 }
 
-.Ruby_box {
+.skill_box.Ruby_box {
   color: white;
   background-color: rgb(221, 67, 51);
-  -webkit-box-shadow: 0px 2px 0px 0px rgba(132,10,0,0.94);
-  -moz-box-shadow: 0px 2px 0px 0px rgba(132,10,0,0.94);
-  box-shadow: 0px 2px 0px 0px rgba(132,10,0,0.94);
 }
 
 .JavaScript_box .icon:before{
@@ -274,4 +287,8 @@ h2 a{
   border:none;
   display:inline-block;
   float:left;
+}
+.skill_box{
+  height:42px;
+  width:140px;
 }

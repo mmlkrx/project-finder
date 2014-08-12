@@ -1,46 +1,17 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-2 main">
 
   <div id="account_info">
       <h2><%= @user.name %></h2>
-      <div class="skills">
-      <p>My skills:</p>
+      <div class="bio col-md-8">
+        <p><%= image_tag avatar_url(current_user), id: "gravatar" %><%= @user.bio %></p>
+      </div>
+      <div class="skills col-md-3">
+      <p class="skill_stack">Skill stack</p>
       <div class="skill_set">
-        <ul>
+        <table>
           <%= render partial: 'skills/skill', collection: @user.skills, locals: {user: @user, project: nil} %>
-        </ul>
+        </table>
       </div>
     </div>
   </div>
-
-<% if @user == current_user %>
-
-<div id="solicited_projects">
-<% if @user.solicited_projects.empty? %>
-  <h2>You are not waiting to join any projects</h2>
-<% else %>
-  <h2>Projects I'm waiting to join</h2>
-    <% @user.solicited_projects.each do |project| %>
-      <div>
-          <h4><%= link_to project.title, project, class: "project_title" %></h4>
-          <p><%= project.description %></p>
-      </div>
-    <% end %>
-<% end %>
-</div>
-<% end %>
-
-<div id="completed_projects">
-<% if @user.projects.completed.empty? && current_user == @user %>
-  <h2>You have no finished projects</h2>
-<% else %>
-  <h2>Finished projects:</h2>
-    <% @user.projects.completed.each do |project| %>
-      <div>
-        <h4><%= link_to project.title, project, class: "project_title" %></h4>
-          <p><%= project.description %></p>
-      </div>
-    <% end %>
-<% end %>
-</div>
-
 </div>

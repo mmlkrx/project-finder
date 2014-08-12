@@ -2,7 +2,6 @@
   padding-top:10px;
   background-color:#ecf0f1;
   margin-top: 20px;
-  min-height:90px;
   border:1px solid rgb(24,191,0);
   border-radius:5px;
 }
@@ -10,6 +9,13 @@
 .skill_set {
   margin:auto;
   width:500px;
+}
+
+.skill_stack{
+  margin-left:-3px;
+  font-size:1.3em;
+  font-family: "Neuton", serif;
+  font-weight:300;
 }
 
 .skills p {

@@ -54,10 +54,15 @@ class ProjectsController < ApplicationController
     render 'my_teams'
   end
 
-  def solicited_projects
+  def pending_applications
     @user = current_user
     @projects = @user.solicited_projects
-    render 'solicited_projects'
+    render 'pending_applications'
+  end
+
+  def finished_projects
+    @user = current_user
+    @projects = @user.projects.completed
   end
 
   private

@@ -4,9 +4,9 @@
     <li><%= link_to "Start a new Project", new_project_path %></li>
     <li><%= link_to "My Projects", my_projects_path %>
     <li><%= link_to "My Current Teams", my_teams_path %></li>
-    <li><a href="" id="solicited_projects_link">Pending Applications</a></li>
+    <li><%= link_to "Pending Applications", pending_applications_path %></li>
     <li><%= link_to "Invitations", invitations_path %></li>
-    <li><a href="" id="completed_projects_link">Finished Projects</a></li>
+    <li><%= link_to "Finished Projects", finished_projects_path %></a></li>
     <li><%= link_to "Edit Account", edit_user_registration_path, class: "edit_account_link" %></li>
   </ul>
 </div>
