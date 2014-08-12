@@ -109,13 +109,13 @@
                     <li class="collaborator_name">
                       <%= image_tag avatar_url(user), class: "gravatar" %>
                       <%= user.name %>
+                      <%= button_to "Invite!", {controller: "user_projects", action: "invite", user_id: user.id, project_id: @project.id}, method: :post, class: ['action_bar'] %>
                     </li>
                       <% user.relevant_skills_for(@project).each do |skill| %>
                         <ul>
                           <div class="skill_tab"><li><%= skill.name %></li></div>
                         </ul>
                       <% end %>
-                    <%= button_to "Invite!", {controller: "user_projects", action: "invite", user_id: user.id, project_id: @project.id}, method: :post, class: ['action_bar'] %>
                   </div>
                 <% end %>
               <% else %>
