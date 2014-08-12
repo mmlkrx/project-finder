@@ -61,9 +61,18 @@ h2 a{
 .action_bar{
   display:inline-block;
   color:rgb(24,191,0);
-  padding:2px 3px 2px 3px;
+  margin:10px;
   background-color:rgb(236,240,241);
-  border-radius:5px;
+  font-style:normal;
+  border:none;
+}
+
+.action_bar:hover{
+  display:inline-block;
+  color:#ffffff;
+  background-color:rgb(24,191,0);
+  font-style:normal;
+  border:none;
 }
 
 .action_bar input[type=submit]{
