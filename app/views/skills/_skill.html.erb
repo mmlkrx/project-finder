@@ -1,3 +1,1 @@
-<% skills.each do |skill| %>
-<div class="skill_box <%= skill.name %>_box"><div class="icon"><span class="skill_name"><%= skill.name %></span></div></div>
-<% end %>
+<div class="skill_box <%= skill.name %>_box"><div class="icon"><span class="skill_name"><%= skill.name %><% if user.skill_score(skill) > 1 %><sup><%= user.skill_score(skill) %><% end %></sup></span></div></div>
