@@ -5,13 +5,11 @@
       <div class="bio col-md-8">
         <p><%= image_tag avatar_url(current_user), id: "gravatar" %><%= @user.bio %></p>
       </div>
-      <div class="skills col-md-3">
+      <div class="col-md-3">
       <p class="skill_stack">Skill stack</p>
-      <div class="skill_set">
-        <table>
-          <%= render partial: 'skills/skill', collection: @user.skills, locals: {user: @user, project: nil} %>
-        </table>
-      </div>
+      <ul class="skills_set">
+        <%= render partial: 'skills/skill', collection: @user.skills, locals: {user: @user, project: nil} %>
+      </ul>
     </div>
   </div>
 </div>

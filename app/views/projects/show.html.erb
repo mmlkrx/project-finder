@@ -17,13 +17,16 @@
       <% end %>
       
       <div class="status_bar">
-        <div class="project_subhead project_status"><%= @project.status %>
+        <div class="project_subhead project_status">
+          <%= @project.status %>
+        </div>
+        <div>
           <% if @project.admin == current_user %>
             <% if @project.status == "planning" %>
-              <%= button_to "Mark as in progress", {controller: "user_projects", action: "in_progress", user_id: current_user.id, project_id: @project.id}, method: :post %>
+              <%= button_to "Mark as in progress", {controller: "user_projects", action: "in_progress", user_id: current_user.id, project_id: @project.id}, method: :post, class: ['action_button'] %>
             <% end %>
             <% if @project.status == "in_progress" %>
-              <%= button_to "Mark as completed", {controller: "user_projects", action: "close_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
+              <%= button_to "Mark as completed", {controller: "user_projects", action: "close_project", user_id: current_user.id, project_id: @project.id}, method: :post, class: ['action_button'] %>
             <% end %>
           <% end %>
         </div>
@@ -58,17 +61,18 @@
                         <%= button_to "Remove this team member", {controller: "user_projects", action: "remove_user_from_project", user_id: user.id, project_id: @project.id}, method: :post %>
                       </div>
                     <% end %>
-                    <% unless user.id == current_user.id || @project.not_completed? %><!-- don't rate yourself -->
-                      <p>
-                        <% user.skills.each do |skill| %>
-                          <%= skill.name %>
-                          <% if skill.endorsable?(current_user, user, @project) %>
-                            <%= button_to "+", {controller: "user_projects", action: "update", user_id: user.id, project_id: @project.id, skill_id: skill.id}, method: :post, class: "endorse_button" %>
-                          <% end %>
-                        <% end %>
-
-                      </p>
-                    <% end %>
+                    <div>
+                      <% unless user.id == current_user.id || @project.not_completed? %><!-- don't rate yourself -->
+                          <div class="user_skills">
+                            <% user.skills.each do |skill| %>
+                              <%= skill.name %>
+                              <% if skill.endorsable?(current_user, user, @project) %>
+                                <%= button_to "endorse", {controller: "user_projects", action: "update", user_id: user.id, project_id: @project.id, skill_id: skill.id}, method: :post, class: "endorse_button" %>
+                              <% end %><br/>
+                            <% end %>
+                          </div>
+                      <% end %>
+                    </div>
                   </li>
                 </div>
             <% end %>
@@ -139,21 +143,6 @@
 <% else %>
   <%= render 'projects/home_sidebar' %>
 <% end  %>
-
-<% if @project.admin == current_user %>
-  <script>
-    $(function(){
-      $('.status_bar form').hide();
-      $('.project_status').on('mouseenter', function(){
-        $('.status_bar form').show();
-      });
-      $('.project_status').on('mouseleave',function(){
-          $('.status_bar form').hide();
-      })
-    })
-  </script>
-<% end %>
-
 
 <%= javascript_include_tag "http://#{ENV["FAYE_URL"]}:9292/faye.js" %>
 <script>
