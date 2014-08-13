@@ -136,8 +136,6 @@
 
 <% if current_user.projects.include?(@project)  %>
   <%= render 'projects/chat_sidebar', project: @project %>
-<% else %>
-  <%= render 'projects/home_sidebar' %>
 <% end  %>
 
 <% if @project.admin == current_user %>
