@@ -73,13 +73,6 @@ h2 {
   display:inline-block;
 }
 
-.status_bar input[type=submit]{
-  color:rgb(24,191,0);
-  display:inline-block;
-  border:none;
-  padding:0;
-  background:none;
-}
 
 h2 a{
   color:rgb(24,191,0);
@@ -131,7 +124,6 @@ h2 a{
   color:#ffffff;
   background-color:rgb(24,191,0);
   font-style:normal;
-  border:none;
 }
 
 .skills {
@@ -315,13 +307,23 @@ h2 a{
   box-shadow: 0px 2px 0px 0px rgba(214,187,0,0.94);
 }
 
+.skill_name_for_list{
+  display:inline-block;
+  float:left;
+  padding-left:15px;
+}
+
+.user_skills form{
+  clear:both;
+}
+
 .endorse_button{
   color:rgb(24,191,0);
   background:none;
   border:none;
-  display:inline;
-  float:left;
+  clear:both;
 }
+
 .skill_box{
   height:42px;
   width:140px;

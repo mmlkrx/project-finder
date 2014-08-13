@@ -17,13 +17,16 @@
       <% end %>
       
       <div class="status_bar">
-        <div class="project_subhead project_status"><%= @project.status %>
+        <div class="project_subhead project_status">
+          <%= @project.status %>
+        </div>
+        <div>
           <% if @project.admin == current_user %>
             <% if @project.status == "planning" %>
-              <%= button_to "Mark as in progress", {controller: "user_projects", action: "in_progress", user_id: current_user.id, project_id: @project.id}, method: :post %>
+              <%= button_to "Mark as in progress", {controller: "user_projects", action: "in_progress", user_id: current_user.id, project_id: @project.id}, method: :post, class: ['action_button'] %>
             <% end %>
             <% if @project.status == "in_progress" %>
-              <%= button_to "Mark as completed", {controller: "user_projects", action: "close_project", user_id: current_user.id, project_id: @project.id}, method: :post %>
+              <%= button_to "Mark as completed", {controller: "user_projects", action: "close_project", user_id: current_user.id, project_id: @project.id}, method: :post, class: ['action_button'] %>
             <% end %>
           <% end %>
         </div>
@@ -137,21 +140,6 @@
 <% if current_user.projects.include?(@project)  %>
   <%= render 'projects/chat_sidebar', project: @project %>
 <% end  %>
-
-<% if @project.admin == current_user %>
-  <script>
-    $(function(){
-      $('.status_bar form').hide();
-      $('.project_status').on('mouseenter', function(){
-        $('.status_bar form').show();
-      });
-      $('.project_status').on('mouseleave',function(){
-          $('.status_bar form').hide();
-      })
-    })
-  </script>
-<% end %>
-
 
 <%= javascript_include_tag "http://#{ENV["FAYE_URL"]}:9292/faye.js" %>
 <script>

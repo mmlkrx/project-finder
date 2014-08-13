@@ -12,6 +12,9 @@ class Project < ActiveRecord::Base
   
   belongs_to :admin, class_name: 'User', foreign_key: :admin_id
 
+  validates :title, presence: true
+  validates :description, presence: true
+
   def prospective_applicants
     p = Project.find(self.id)
     UserProject.find(p).people_who_are_not_invited(p).people_who_are_not_approved(p)
