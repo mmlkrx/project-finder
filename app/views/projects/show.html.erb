@@ -62,15 +62,16 @@
                       <% end %>
                     </div>
                     <% unless user.id == current_user.id || @project.not_completed? %><!-- don't rate yourself -->
-                      <p>
+                      <ul>
                         <% user.skills.each do |skill| %>
+                        <li>
                           <%= skill.name %>
                           <% if skill.endorsable?(current_user, user, @project) %>
-                            <%= button_to "+", {controller: "user_projects", action: "update", user_id: user.id, project_id: @project.id, skill_id: skill.id}, method: :post, class: "endorse_button" %>
+                            <%= button_to "endorse", {controller: "user_projects", action: "update", user_id: user.id, project_id: @project.id, skill_id: skill.id}, method: :post, class: "endorse_button" %>
                           <% end %>
                         <% end %>
-
-                      </p>
+                      </li>
+                      </ul>
                     <% end %>
                   </li>
                 </div>
