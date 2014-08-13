@@ -304,3 +304,15 @@ h2 a{
   height:42px;
   width:140px;
 }
+
+.edit_account {
+  width:550px;
+  padding:20px;
+}
+
+@media (min-width: 768px) {
+  .edit_account {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
