@@ -11,7 +11,6 @@ class UserProjectsController < ApplicationController
   def leave_project
     @project = Project.find(params[:project_id])
     user_project = UserProject.find_by(user_id: params[:user_id], project_id: params[:project_id])
-    binding.pry
     flash[:notice] = "You have left #{@project.title}"
     user_project.destroy
     @project.admin.notifications.build(content: "#{current_user.name} has left #{@project.title}").save
