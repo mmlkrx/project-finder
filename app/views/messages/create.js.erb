@@ -1,4 +1,16 @@
 <% broadcast "/messages/#{@message.project_id}" do %>
 $("#chat").append("<%=j render(@message) %>");
+
+// this is a workaround to get the actual chat height
+// it doesn't need .on("click") because faye is pinging
+// the chat server every time so we're gr 
+var messageNumber = $("li.message").size(),
+    messageHeight = $("li.message").first().height(),
+    chatHeight = messageNumber * messageHeight;
+
+  $("#chat").animate({
+    scrollTop: chatHeight
+  }, 300);
 <% end %>
 $("#new_message")[0].reset();
+                  
