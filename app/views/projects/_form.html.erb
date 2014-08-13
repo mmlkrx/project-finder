@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area(:description, class: ['form-control']) %>
+    <%= f.text_area(:description, class: 'form-control') %>
   </div>
 
   <div class="field"> <div class="project_skill_ids">
@@ -31,7 +31,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Create Project", class: "btn btn-success update_account" %>
   </div>
 <% end %>
 
