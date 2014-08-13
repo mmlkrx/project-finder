@@ -81,14 +81,14 @@
 
 <div class="row subsequent_people">
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <div class="project_card col-sm-offset-1 col-md-8">
+    <div class="col-sm-offset-1 col-md-8">
       <div class="prospective_applicants">
         <% if current_user.is_admin_for?(@project) || @project.current_collaborators.include?(current_user) %>
           <% unless @project.prospective_applicants.empty? %>
           <div class="want_to_join">
             <h4>These people want to join your team</h4>
             <% @project.prospective_applicants.each do |user| %>
-            <div class="prospective_collaborator">
+            <div class="prospective_collaborator project_card">
               <%= user.name %>
               <div class="skill_set">
                 <% user.skills.each do |skill| %>
@@ -105,8 +105,8 @@
           <% end %>
       </div><!-- END prospective_applicants -->
           <% unless @project.completed? || current_user.is_not_admin_for?(@project)%>
-            <div class="suggested_collaborators">
-              <% if @project.has_matching_user_skills? %>
+            <div class="suggested_collaborators project_card">
+              <% if @project.has_matching_user_skills? && !@project.skill_matching_users.empty? %>
               <h4>These people have skills that could be useful to you:</h4>
                 <% @project.skill_matching_users.each do |user| %>
                   <div class="prospective_collaborator">
@@ -123,7 +123,7 @@
                   </div>
                 <% end %>
               <% else %>
-                <h3>No one seems to have the skills you need :/</h3>
+                <h3>Sorry, but no one seems to have the skills you're looking for...</h3>
               <% end %>
             </div>
           <% end %>
