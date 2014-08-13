@@ -6,7 +6,7 @@
     <% else %>
       <h2>You've been invited to the following projects</h2>
       <% @user.invited_projects.each do |project| %>
-        <%= render 'project' %>
+        <%= render 'project', :project => project %>
       <% end %>
     <% end %>
 
