@@ -1,6 +1,6 @@
 <div class="col-sm-3 col-md-2 sidebar">
   <ul class="nav nav-sidebar">
-    <li><a href="" id="home_page"><%= current_user.name %></a></li>
+    <li><%= link_to current_user.name, current_user %></a></li>
     <li><%= link_to "Start a new Project", new_project_path %></li>
     <li><%= link_to "My Projects", my_projects_path %>
     <li><%= link_to "My Current Teams", my_teams_path %></li>

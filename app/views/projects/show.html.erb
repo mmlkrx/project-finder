@@ -134,6 +134,12 @@
   </div><!-- END side -->
 </div><!-- END row -->
 
+<% if current_user.projects.include?(@project)  %>
+  <%= render 'projects/chat_sidebar', project: @project %>
+<% else %>
+  <%= render 'projects/home_sidebar' %>
+<% end  %>
+
 <% if @project.admin == current_user %>
   <script>
     $(function(){
@@ -148,11 +154,6 @@
   </script>
 <% end %>
 
-<% if current_user.projects.include?(@project)  %>
-  <%= render 'projects/chat_sidebar', project: @project %>
-<% else %>
-  <%= render 'projects/home_sidebar' %>
-<% end  %>
 
 <%= javascript_include_tag "http://#{ENV["FAYE_URL"]}:9292/faye.js" %>
 <script>
