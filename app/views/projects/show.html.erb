@@ -86,19 +86,19 @@
         <% if current_user.is_admin_for?(@project) || @project.current_collaborators.include?(current_user) %>
           <% unless @project.prospective_applicants.empty? %>
           <div class="want_to_join">
-            <h4>These people want to join your team</h4>
             <% @project.prospective_applicants.each do |user| %>
-            <div class="prospective_collaborator project_card">
+            <div class="prospective_collaborator project_card suggested_collaborators">
+            <h4>These people want to join your team</h4>
               <%= user.name %>
+              <% if current_user.is_admin_for?(@project) && !user.invited_projects.include?(@project) %>
+                <%= button_to "Approve", {controller: "user_projects", action: "approve_collaboration", user_id: user.id, project_id: @project.id}, method: :post, class: "action_bar" %>
+                <%= button_to "Deny", {controller: "user_projects", action: "deny_collaboration", user_id: user.id, project_id: @project.id}, method: :post, class: "action_bar" %>
+              <% end %>
               <div class="skill_set">
                 <% user.skills.each do |skill| %>
                   <div class="skill"><%= skill.name %></div>
                 <% end %>
               </div>
-              <% if current_user.is_admin_for?(@project) && !user.invited_projects.include?(@project) %>
-                <%= button_to "Approve collaboration", {controller: "user_projects", action: "approve_collaboration", user_id: user.id, project_id: @project.id}, method: :post, class: "action_button" %>
-                <%= button_to "Deny collaboration", {controller: "user_projects", action: "deny_collaboration", user_id: user.id, project_id: @project.id}, method: :post, class: "action_button" %>
-              <% end %>
             </div>
             <% end  %>
           </div>
