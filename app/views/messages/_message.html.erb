@@ -1,1 +1,8 @@
-<li class="message"><%= time_ago_in_words(message.created_at) %> ago by <%= message.user.name %>: <%= message.text %></li>
+<li class="message">
+  <div class="send-at">
+    <%= time_ago_in_words(message.created_at) %> ago by 
+  </div>
+  <div class="content">
+    <b><%= message.user.name %>:</b>  <%= message.text %>
+  </div>
+</li>
