@@ -47,17 +47,17 @@
             <% @project.current_collaborators.each do |user| %>
                 <div class="team_member">
                   <li class="team_member_name">
-                    <%= image_tag avatar_url(user), class: "gravatar" %>
-                    <% if user == current_user %>
-                      <%= user.name %>
-                    <% else %>
-                      <%= link_to user.name, user_path(user) %>
-                    <% end %>
-                    <% if @project.admin == current_user && @project.not_completed? %>
-                      <div class="action_bar remove_user_button">
-                        <%= button_to "Remove this team member", {controller: "user_projects", action: "remove_user_from_project", user_id: user.id, project_id: @project.id}, method: :post %>
-                      </div>
-                    <% end %>
+                    <div class="remove_user_button">
+                      <%= image_tag avatar_url(user), class: "gravatar" %>
+                      <% if user == current_user %>
+                        <%= user.name %>
+                      <% else %>
+                        <%= link_to user.name, user_path(user) %>
+                      <% end %>
+                      <% if @project.admin == current_user && @project.not_completed? %>
+                          <%= button_to "Remove this team member", {controller: "user_projects", action: "remove_user_from_project", user_id: user.id, project_id: @project.id}, method: :post, class: "action_button remove_user_button" %>
+                      <% end %>
+                    </div>
                     <% unless user.id == current_user.id || @project.not_completed? %><!-- don't rate yourself -->
                       <p>
                         <% user.skills.each do |skill| %>
@@ -96,8 +96,8 @@
                 <% end %>
               </div>
               <% if current_user.is_admin_for?(@project) && !user.invited_projects.include?(@project) %>
-                <%= button_to "Approve collaboration", {controller: "user_projects", action: "approve_collaboration", user_id: user.id, project_id: @project.id}, method: :post %>
-                <%= button_to "Deny collaboration", {controller: "user_projects", action: "deny_collaboration", user_id: user.id, project_id: @project.id}, method: :post %>
+                <%= button_to "Approve collaboration", {controller: "user_projects", action: "approve_collaboration", user_id: user.id, project_id: @project.id}, method: :post, class: "action_button" %>
+                <%= button_to "Deny collaboration", {controller: "user_projects", action: "deny_collaboration", user_id: user.id, project_id: @project.id}, method: :post, class: "action_button" %>
               <% end %>
             </div>
             <% end  %>

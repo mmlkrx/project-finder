@@ -278,15 +278,6 @@
   color:black;
 }
 
-.action_bar input[type=submit]{
-background-color:rgb(236,240,241);
-display:inline-block;
-border:none;
-font-size:1.3em;
-font-family: "Neuton", serif;
-font-weight:300;
-}
-
 .skill_name form{
   display:inline-block;
 }
@@ -336,8 +327,18 @@ label {
   color:tomato;
 }
 
+.remove_user_button input[type=submit] {
+  background-color: #ffffff;
+  color:tomato;
+  margin:0;
+  border:1px solid tomato;
+}
 
-
+.remove_user_button input[type=submit]:hover {
+  background-color: tomato;
+  color:white;
+  margin:0;
+}
 
 
 
