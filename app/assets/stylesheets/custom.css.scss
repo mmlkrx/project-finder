@@ -95,8 +95,21 @@
 }
 
 .sign_up_column{
-  float:left;
-  width:50%;
+  height:auto; 
+  margin:0 auto; 
+}
+
+.sign_up_column .new_user .field {
+  width:350px;
+}
+
+.sign_up_column .new_user .field ul.select2-choices {
+  width:350px;
+}
+
+.sign_up_column form#new_user {
+  width:50%; 
+  margin:0 auto;
 }
 
 .skills_column{
@@ -338,6 +351,10 @@ label {
 
 #welcome-message {
   width:80%;
+}
+
+.about_us p a {
+  text-decoration: none;
 }
 
 
